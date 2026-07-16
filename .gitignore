@@ -20,3 +20,6 @@ run/
 .env
 .env.local
 .env.*.local
+
+# Local build output
+mods/

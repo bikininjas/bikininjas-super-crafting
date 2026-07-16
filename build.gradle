@@ -68,15 +68,22 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 // ============================================================
 repositories {
     mavenCentral()
-    maven {
-        name = "Bikininjas"
-        url = "https://maven.bikininjas.dev/releases"
+    // Local core-lib repo (injected by build-local.sh) — takes priority when set
+    if (project.hasProperty('core_lib_repo')) {
+        maven { url = project.core_lib_repo }
+    }
+    // Remote Bikininjas Maven (default when not building locally)
+    if (!project.hasProperty('core_lib_repo')) {
+        maven {
+            name = "Bikininjas"
+            url = "https://maven.bikininjas.dev/releases"
+        }
     }
 }
 
 dependencies {
     // Core Lib — substituted with local build via includeBuild
-    implementation "com.bikininjas:core-lib:1.0.0"
+    implementation "com.bikininjas.corelib:core_lib:${project.core_lib_version}"
 
     // Testing
     testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
