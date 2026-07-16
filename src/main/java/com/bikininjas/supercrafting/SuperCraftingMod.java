@@ -1,7 +1,9 @@
 package com.bikininjas.supercrafting;
 
+import com.bikininjas.supercrafting.item.ModFoods;
 import com.bikininjas.supercrafting.item.ModItems;
 import com.bikininjas.supercrafting.item.SuperArmorMaterial;
+import com.bikininjas.supercrafting.recipe.ExoticRecipeManager;
 import com.bikininjas.supercrafting.recipe.FusionRecipeManager;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -24,12 +26,16 @@ public final class SuperCraftingMod {
 
     public SuperCraftingMod(IEventBus modBus) {
         ModItems.ITEMS.register(modBus);
+        ModFoods.FOODS.register(modBus);
         SuperArmorMaterial.ARMOR_MATERIALS.register(modBus);
 
         // Recipes require a running MinecraftServer (RecipeAPI.addRecipe uses
         // reflection on the server's RecipeManager), so register at server start.
         NeoForge.EVENT_BUS.addListener(ServerAboutToStartEvent.class,
-                event -> FusionRecipeManager.registerAll());
+                event -> {
+                    FusionRecipeManager.registerAll();
+                    ExoticRecipeManager.registerAll();
+                });
 
         LOGGER.info("Super Crafting mod initialized");
     }
