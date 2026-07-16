@@ -7,6 +7,7 @@ import com.bikininjas.corelib.recipe.RecipeAPI;
 import com.bikininjas.supercrafting.item.ModItems;
 import com.bikininjas.supercrafting.recipe.ExoticRecipeManager;
 import com.bikininjas.supercrafting.recipe.FusionRecipeManager;
+import com.bikininjas.supercrafting.SuperFunnyIntegration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.bus.api.IEventBus;
@@ -32,6 +33,7 @@ public final class SuperCraftingMod {
         ModItems.CREATIVE_TABS.register(modBus);
         NetworkHandler.register(modBus);
         EnchantHandler.init();
+        SuperFunnyIntegration.init();
 
         NeoForge.EVENT_BUS.addListener((ServerAboutToStartEvent event) -> {
             var server = event.getServer();
