@@ -12,12 +12,14 @@ plugins {
 
 rootProject.name = 'mod-super-crafting'
 
-// CI composite build — core-lib checked out alongside via actions/checkout
+// Composite build — core-lib checked out alongside (CI: core-lib/, local: ../core-lib)
 def coreLibDir = file('core-lib')
+if (!coreLibDir.exists()) {
+    coreLibDir = file('../core-lib')
+}
 if (coreLibDir.exists()) {
     includeBuild(coreLibDir) {
         dependencySubstitution {
-            // Match the Maven coordinate used in build.gradle
             substitute module('com.bikininjas.corelib:core_lib') using project(':')
         }
     }

@@ -341,28 +341,40 @@ public final class ModItems {
     // ──────────────────────────────────────────────
 
     private static DeferredHolder<Item, SwordItem> sword(String name, SuperTier tier) {
-        return ITEMS.register(name, () -> new SwordItem(tier, properties()));
+        return ITEMS.register(name, () -> new SwordItem(tier, properties()) {
+            @Override public boolean isFoil(ItemStack stack) { return true; }
+        });
     }
 
     private static DeferredHolder<Item, PickaxeItem> pickaxe(String name, SuperTier tier) {
-        return ITEMS.register(name, () -> new PickaxeItem(tier, properties()));
+        return ITEMS.register(name, () -> new PickaxeItem(tier, properties()) {
+            @Override public boolean isFoil(ItemStack stack) { return true; }
+        });
     }
 
     private static DeferredHolder<Item, AxeItem> axe(String name, SuperTier tier) {
-        return ITEMS.register(name, () -> new AxeItem(tier, properties()));
+        return ITEMS.register(name, () -> new AxeItem(tier, properties()) {
+            @Override public boolean isFoil(ItemStack stack) { return true; }
+        });
     }
 
     private static DeferredHolder<Item, ShovelItem> shovel(String name, SuperTier tier) {
-        return ITEMS.register(name, () -> new ShovelItem(tier, properties()));
+        return ITEMS.register(name, () -> new ShovelItem(tier, properties()) {
+            @Override public boolean isFoil(ItemStack stack) { return true; }
+        });
     }
 
     private static DeferredHolder<Item, HoeItem> hoe(String name, SuperTier tier) {
-        return ITEMS.register(name, () -> new HoeItem(tier, properties()));
+        return ITEMS.register(name, () -> new HoeItem(tier, properties()) {
+            @Override public boolean isFoil(ItemStack stack) { return true; }
+        });
     }
 
     private static DeferredHolder<Item, ArmorItem> armor(String name, Holder<ArmorMaterial> material,
                                                            ArmorItem.Type type) {
-        return ITEMS.register(name, () -> new ArmorItem(material, type, properties()));
+        return ITEMS.register(name, () -> new ArmorItem(material, type, properties()) {
+            @Override public boolean isFoil(ItemStack stack) { return true; }
+        });
     }
 
     private static Item.Properties properties() {
