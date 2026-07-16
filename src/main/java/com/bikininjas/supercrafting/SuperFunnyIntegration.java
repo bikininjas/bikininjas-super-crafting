@@ -2,33 +2,34 @@ package com.bikininjas.supercrafting;
 
 import com.bikininjas.corelib.log.LogManager;
 import com.bikininjas.corelib.log.ModLogger;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.core.particles.DustParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.joml.Vector3f;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -224,6 +225,35 @@ public final class SuperFunnyIntegration {
             player.level().addParticle(
                     new DustParticleOptions(new Vector3f(r, g, b), 1.0f),
                     player.getX(), player.getY() + 0.1, player.getZ(), 0, 0, 0);
+        }
+        @SubscribeEvent
+        static void onItemTooltip(ItemTooltipEvent event) {
+            ItemStack stack = event.getItemStack();
+            if (!isUltimateItem(stack)) {
+                return;
+            }
+            String path = BuiltInRegistries.ITEM.getKey(stack.getItem()).getPath();
+            List<Component> tooltip = event.getToolTip();
+
+            if (path.contains("sword")) {
+                tooltip.add(Component.literal("⚡ 30% chance: lightning strike").withStyle(ChatFormatting.AQUA));
+            } else if (path.contains("pickaxe")) {
+                tooltip.add(Component.literal("💎 50% chance: bonus XP orbs").withStyle(ChatFormatting.AQUA));
+            } else if (path.contains("axe")) {
+                tooltip.add(Component.literal("🚀 Launches hit entity upward").withStyle(ChatFormatting.AQUA));
+            } else if (path.contains("shovel")) {
+                tooltip.add(Component.literal("🏔 Spawns silverfish on dig").withStyle(ChatFormatting.AQUA));
+            } else if (path.contains("hoe")) {
+                tooltip.add(Component.literal("🐔 Right-click mob → chicken").withStyle(ChatFormatting.AQUA));
+            } else if (path.contains("helmet")) {
+                tooltip.add(Component.literal("👁 Glowing on nearby mobs (10 blocks)").withStyle(ChatFormatting.AQUA));
+            } else if (path.contains("chestplate")) {
+                tooltip.add(Component.literal("🛡 25% chance: reflect 40% damage").withStyle(ChatFormatting.AQUA));
+            } else if (path.contains("leggings")) {
+                tooltip.add(Component.literal("🏃 Speed II while equipped").withStyle(ChatFormatting.AQUA));
+            } else if (path.contains("boots")) {
+                tooltip.add(Component.literal("🌈 Rainbow particle trail while sprinting").withStyle(ChatFormatting.AQUA));
+            }
         }
     }
 }
