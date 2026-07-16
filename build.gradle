@@ -72,17 +72,12 @@ repositories {
     if (project.hasProperty('core_lib_repo')) {
         maven { url = project.core_lib_repo }
     }
-    // Remote Bikininjas Maven (default when not building locally)
-    if (!project.hasProperty('core_lib_repo')) {
-        maven {
-            name = "Bikininjas"
-            url = "https://maven.bikininjas.dev/releases"
-        }
-    }
+    // CI resolves core-lib via composite build (--include-build core-lib)
 }
 
 dependencies {
-    // Core Lib — substituted with local build via includeBuild
+    // Core lib — resolved via composite build (--include-build core-lib) in CI,
+    // or via -Pcore_lib_repo=... for local builds
     implementation "com.bikininjas.corelib:core_lib:${project.core_lib_version}"
 
     // Testing
