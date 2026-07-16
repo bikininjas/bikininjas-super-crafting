@@ -1,0 +1,117 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.141'
+}
+
+version = project.mod_version
+group = project.mod_group_id
+
+base {
+    archivesName = project.mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+// ============================================================
+// NeoForge
+// ============================================================
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all',
+                    '--output', file('src/generated/resources/').getAbsolutePath(),
+                    '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${project.mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+
+    unitTest {
+        enable()
+        testedMod = mods."${project.mod_id}"
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+// ============================================================
+// Dependencies
+// ============================================================
+repositories {
+    mavenCentral()
+    maven {
+        name = "Bikininjas"
+        url = "https://maven.bikininjas.dev/releases"
+    }
+}
+
+dependencies {
+    // Core Lib — substituted with local build via includeBuild
+    implementation "com.bikininjas:core-lib:1.0.0"
+
+    // Testing
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+    testImplementation "net.neoforged:testframework:${project.neo_version}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// ============================================================
+// Mod metadata
+// ============================================================
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version       : project.minecraft_version,
+            minecraft_version_range : project.minecraft_version_range,
+            neo_version             : project.neo_version,
+            loader_version_range    : project.loader_version_range,
+            mod_id                  : project.mod_id,
+            mod_name                : project.mod_name,
+            mod_license             : project.mod_license,
+            mod_version             : project.mod_version,
+            mod_authors             : project.mod_authors,
+            mod_description         : project.mod_description
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
