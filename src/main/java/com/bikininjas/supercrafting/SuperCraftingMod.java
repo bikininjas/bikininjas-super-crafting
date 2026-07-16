@@ -1,5 +1,6 @@
 package com.bikininjas.supercrafting;
 
+import com.bikininjas.corelib.color.ColorAPI;
 import com.bikininjas.corelib.log.LogManager;
 import com.bikininjas.corelib.log.ModLogger;
 import com.bikininjas.corelib.network.NetworkHandler;
@@ -34,6 +35,37 @@ public final class SuperCraftingMod {
         NetworkHandler.register(modBus);
         EnchantHandler.init();
         SuperFunnyIntegration.init();
+
+        ColorAPI.tintItems(modBus, 0xFFAAAAAA,
+                ModItems.SUPER_IRON_SWORD, ModItems.SUPER_IRON_PICKAXE,
+                ModItems.SUPER_IRON_AXE, ModItems.SUPER_IRON_SHOVEL,
+                ModItems.SUPER_IRON_HOE, ModItems.SUPER_IRON_HELMET,
+                ModItems.SUPER_IRON_CHESTPLATE, ModItems.SUPER_IRON_LEGGINGS,
+                ModItems.SUPER_IRON_BOOTS);
+        ColorAPI.tintItems(modBus, 0xFFFFD700,
+                ModItems.SUPER_GOLD_SWORD, ModItems.SUPER_GOLD_PICKAXE,
+                ModItems.SUPER_GOLD_AXE, ModItems.SUPER_GOLD_SHOVEL,
+                ModItems.SUPER_GOLD_HOE, ModItems.SUPER_GOLD_HELMET,
+                ModItems.SUPER_GOLD_CHESTPLATE, ModItems.SUPER_GOLD_LEGGINGS,
+                ModItems.SUPER_GOLD_BOOTS);
+        ColorAPI.tintItems(modBus, 0xFF88FFFF,
+                ModItems.SUPER_DIAMOND_SWORD, ModItems.SUPER_DIAMOND_PICKAXE,
+                ModItems.SUPER_DIAMOND_AXE, ModItems.SUPER_DIAMOND_SHOVEL,
+                ModItems.SUPER_DIAMOND_HOE, ModItems.SUPER_DIAMOND_HELMET,
+                ModItems.SUPER_DIAMOND_CHESTPLATE, ModItems.SUPER_DIAMOND_LEGGINGS,
+                ModItems.SUPER_DIAMOND_BOOTS);
+        ColorAPI.tintItems(modBus, 0xFFAA44FF,
+                ModItems.SUPER_NETHERITE_SWORD, ModItems.SUPER_NETHERITE_PICKAXE,
+                ModItems.SUPER_NETHERITE_AXE, ModItems.SUPER_NETHERITE_SHOVEL,
+                ModItems.SUPER_NETHERITE_HOE, ModItems.SUPER_NETHERITE_HELMET,
+                ModItems.SUPER_NETHERITE_CHESTPLATE, ModItems.SUPER_NETHERITE_LEGGINGS,
+                ModItems.SUPER_NETHERITE_BOOTS);
+        ColorAPI.tintItems(modBus, 0xFFFF44FF,
+                ModItems.ULTIMATE_SWORD, ModItems.ULTIMATE_PICKAXE,
+                ModItems.ULTIMATE_AXE, ModItems.ULTIMATE_SHOVEL,
+                ModItems.ULTIMATE_HOE, ModItems.ULTIMATE_HELMET,
+                ModItems.ULTIMATE_CHESTPLATE, ModItems.ULTIMATE_LEGGINGS,
+                ModItems.ULTIMATE_BOOTS);
 
         NeoForge.EVENT_BUS.addListener((ServerAboutToStartEvent event) -> {
             var server = event.getServer();
