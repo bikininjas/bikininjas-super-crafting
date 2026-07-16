@@ -21,17 +21,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Checkout core-lib (composite build)
-        uses: actions/checkout@v4
-        with:
-          repository: bikininjas/bikininjas-mclib
-          path: core-lib
+      - name: Resolve core-lib version
+        id: corelib
+        run: |
+          VERSION=$(curl -sSf https://api.github.com/repos/bikininjas/bikininjas-mclib/releases/latest | jq -r .tag_name | sed 's/^v//')
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Download core-lib JAR
+        run: |
+          VERSION="${{ steps.corelib.outputs.version }}"
+          mkdir -p libs
+          curl -sSfL -o "libs/core_lib-${VERSION}.jar" \
+            "https://github.com/bikininjas/bikininjas-mclib/releases/download/v${VERSION}/core_lib-${VERSION}.jar"
 
       - uses: actions/setup-java@v4
         with:
           java-version: 21
           distribution: temurin
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v6
 
       - name: Build & test
         run: ./gradlew build test
@@ -48,17 +55,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Checkout core-lib (composite build)
-        uses: actions/checkout@v4
-        with:
-          repository: bikininjas/bikininjas-mclib
-          path: core-lib
+      - name: Resolve core-lib version
+        id: corelib
+        run: |
+          VERSION=$(curl -sSf https://api.github.com/repos/bikininjas/bikininjas-mclib/releases/latest | jq -r .tag_name | sed 's/^v//')
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Download core-lib JAR
+        run: |
+          VERSION="${{ steps.corelib.outputs.version }}"
+          mkdir -p libs
+          curl -sSfL -o "libs/core_lib-${VERSION}.jar" \
+            "https://github.com/bikininjas/bikininjas-mclib/releases/download/v${VERSION}/core_lib-${VERSION}.jar"
 
       - uses: actions/setup-java@v4
         with:
           java-version: 21
           distribution: temurin
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v6
 
       - name: Determine next version
         id: version
