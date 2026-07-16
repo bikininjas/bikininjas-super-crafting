@@ -64,6 +64,37 @@ dependencies {
     // core-lib (composite build in dev, flatDir JAR in CI)
     implementation libs.core.lib
     implementation libs.jetbrains.annotations
+
+    // NeoForge Test Framework — for @ForEachTest / @EmptyTemplate / ExtendedGameTestHelper
+    compileOnly "net.neoforged:testframework:${neo_version}"
+    testRuntimeOnly "net.neoforged:testframework:${neo_version}"
+
+    // Tests
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly libs.junit.platform.launcher
+    testImplementation libs.slf4j.api
+}
+
+// The moddev plugin keeps Minecraft/NeoForge on dedicated configurations that the
+// default `test` source set does not inherit. Wire them so JUnit + GameTest code
+// can reference net.minecraft.* and the test framework.
+configurations {
+    testCompileClasspath.extendsFrom modDevCompileDependencies
+    testRuntimeClasspath.extendsFrom modDevRuntimeDependencies
+}
+
+dependencies {
+    // NeoForge Test Framework on the test classpath (compile + runtime).
+    testCompileOnly "net.neoforged:testframework:${neo_version}"
+    testRuntimeOnly "net.neoforged:testframework:${neo_version}"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+    }
 }
 
 // ============================================================

@@ -3,6 +3,7 @@ package com.bikininjas.supercrafting.item;
 import com.bikininjas.corelib.log.LogManager;
 import com.bikininjas.corelib.log.ModLogger;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -110,19 +111,19 @@ public final class ModItems {
     // ================================================================
 
     public static final DeferredItem<Item> SUPER_APPLE = ITEMS.registerItem("super_apple",
-            props -> new Item(props.food(Foods.SUPER_APPLE)));
+            props -> new Item(props.food(Foods.SUPER_APPLE).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
 
     public static final DeferredItem<Item> SUPER_CARROT = ITEMS.registerItem("super_carrot",
-            props -> new Item(props.food(Foods.SUPER_CARROT)));
+            props -> new Item(props.food(Foods.SUPER_CARROT).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
 
     public static final DeferredItem<Item> SUPER_MELON = ITEMS.registerItem("super_melon",
-            props -> new Item(props.food(Foods.SUPER_MELON)));
+            props -> new Item(props.food(Foods.SUPER_MELON).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
 
     public static final DeferredItem<Item> SUPER_CHORUS = ITEMS.registerItem("super_chorus",
-            props -> new Item(props.food(Foods.SUPER_CHORUS)));
+            props -> new Item(props.food(Foods.SUPER_CHORUS).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
 
     public static final DeferredItem<Item> ULTIMATE_FEAST = ITEMS.registerItem("ultimate_feast",
-            props -> new Item(props.food(Foods.ULTIMATE_FEAST)));
+            props -> new Item(props.food(Foods.ULTIMATE_FEAST).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
 
     // ================================================================
     // Creative tab
@@ -141,12 +142,14 @@ public final class ModItems {
 
     @SuppressWarnings("SameParameterValue")
     private static <T extends TieredItem> DeferredItem<T> tool(String name, SuperTier tier, ToolFactory<T> factory) {
-        return ITEMS.registerItem(name, props -> factory.create(tier, props.fireResistant()));
+        return ITEMS.registerItem(name, props -> factory.create(tier,
+                props.fireResistant().component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
     }
 
     @SuppressWarnings("SameParameterValue")
     private static DeferredItem<ArmorItem> armor(String name, ArmorMaterial mat, ArmorItem.Type type) {
-        return ITEMS.registerItem(name, props -> new ArmorItem(Holder.direct(mat), type, props.fireResistant()));
+        return ITEMS.registerItem(name, props -> new ArmorItem(Holder.direct(mat), type,
+                props.fireResistant().component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
     }
 
     @FunctionalInterface
