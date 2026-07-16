@@ -1,8 +1,7 @@
 package com.bikininjas.supercrafting;
 
-import com.bikininjas.supercrafting.item.ModFoods;
+import com.bikininjas.corelib.network.NetworkHandler;
 import com.bikininjas.supercrafting.item.ModItems;
-import com.bikininjas.supercrafting.item.SuperArmorMaterial;
 import com.bikininjas.supercrafting.recipe.ExoticRecipeManager;
 import com.bikininjas.supercrafting.recipe.FusionRecipeManager;
 import net.neoforged.bus.api.IEventBus;
@@ -13,30 +12,35 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Main entry point for the Super Crafting mod.
+ * Super Crafting mod entry point.
  * <p>
- * Registers all super-tier items and fusion recipes.
+ * Registers the item DeferredRegister and core-lib network handler on the mod
+ * bus, and force-loads the recipe/enchant modules on {@link ServerAboutToStartEvent}.
  */
 @Mod(SuperCraftingMod.MODID)
 public final class SuperCraftingMod {
 
     public static final String MODID = "super_crafting";
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SuperCraftingMod.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
     public SuperCraftingMod(IEventBus modBus) {
+        // Register items on the mod bus
         ModItems.ITEMS.register(modBus);
-        ModFoods.FOODS.register(modBus);
-        SuperArmorMaterial.ARMOR_MATERIALS.register(modBus);
+        ModItems.CREATIVE_TABS.register(modBus);
 
-        // Recipes require a running MinecraftServer (RecipeAPI.addRecipe uses
-        // reflection on the server's RecipeManager), so register at server start.
-        NeoForge.EVENT_BUS.addListener(ServerAboutToStartEvent.class,
-                event -> {
-                    FusionRecipeManager.registerAll();
-                    ExoticRecipeManager.registerAll();
-                });
+        // Register core-lib network payloads
+        NetworkHandler.register(modBus);
 
-        LOGGER.info("Super Crafting mod initialized");
+        // Static initializer registers EnchantHandler on the NeoForge bus
+        EnchantHandler.init();
+
+        // Force-load recipe managers + enchant handler on server start
+        NeoForge.EVENT_BUS.addListener((ServerAboutToStartEvent event) -> {
+            FusionRecipeManager.createAll();
+            ExoticRecipeManager.createAll();
+            EnchantHandler.init();
+            LOGGER.info("Super Crafting modules initialized");
+        });
     }
 }

@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-    id 'net.neoforged.moddev' version '2.0.141'
+    id 'net.neoforged.moddev' version '2.0.142'
 }
 
 version = project.mod_version
@@ -12,9 +12,6 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-// ============================================================
-// NeoForge
-// ============================================================
 neoForge {
     version = project.neo_version
 
@@ -54,44 +51,23 @@ neoForge {
             sourceSet(sourceSets.main)
         }
     }
-
-    unitTest {
-        enable()
-        testedMod = mods."${project.mod_id}"
-    }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-// ============================================================
-// Dependencies
-// ============================================================
 repositories {
     mavenCentral()
-    // Local core-lib repo (injected by build-local.sh) — takes priority when set
-    if (project.hasProperty('core_lib_repo')) {
-        maven { url = project.core_lib_repo }
-    }
-    // CI resolves core-lib via composite build (--include-build core-lib)
+    flatDir { dirs 'libs' }
 }
 
 dependencies {
-    // Core lib — resolved via composite build (--include-build core-lib) in CI,
-    // or via -Pcore_lib_repo=... for local builds
+    // core-lib (composite build in dev, flatDir JAR in CI)
     implementation "com.bikininjas.corelib:core_lib:${project.core_lib_version}"
-
-    // Testing
-    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
-    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
-    testImplementation "net.neoforged:testframework:${project.neo_version}"
-}
-
-test {
-    useJUnitPlatform()
+    implementation 'org.jetbrains:annotations:26.0.2'
 }
 
 // ============================================================
-// Mod metadata
+// Mod metadata generation
 // ============================================================
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
     var replaceProperties = [

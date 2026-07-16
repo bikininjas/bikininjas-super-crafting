@@ -10,17 +10,13 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.9.0'
 }
 
-rootProject.name = 'mod-super-crafting'
-
-// Composite build — core-lib checked out alongside (CI: core-lib/, local: ../core-lib)
-def coreLibDir = file('core-lib')
-if (!coreLibDir.exists()) {
-    coreLibDir = file('../core-lib')
-}
-if (coreLibDir.exists()) {
-    includeBuild(coreLibDir) {
+// Dev mode: include core-lib as composite build
+if (file('../core-lib').exists()) {
+    includeBuild('../core-lib') {
         dependencySubstitution {
             substitute module('com.bikininjas.corelib:core_lib') using project(':')
         }
     }
 }
+
+rootProject.name = 'mod-super-crafting'

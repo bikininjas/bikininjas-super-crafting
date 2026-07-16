@@ -1,16 +1,11 @@
 package com.bikininjas.supercrafting.item;
 
-import com.bikininjas.supercrafting.SuperCraftingMod;
-import net.minecraft.Util;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -18,78 +13,41 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 /**
- * Holds the {@link ArmorMaterial} definitions for all super-crafting armor tiers.
+ * Five armor materials matching {@link SuperTier} progression.
  * <p>
- * Materials are registered via {@link DeferredRegister} to the {@link Registries#ARMOR_MATERIAL} registry.
+ * NeoForge 21.1.x models {@link ArmorMaterial} as an immutable record, so each
+ * tier is a pre-built instance rather than an enum/interface implementation.
  */
 public final class SuperArmorMaterial {
 
-    private SuperArmorMaterial() {}
+    private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = new EnumMap<>(Map.of(
+            ArmorItem.Type.BOOTS, 13,
+            ArmorItem.Type.LEGGINGS, 15,
+            ArmorItem.Type.CHESTPLATE, 16,
+            ArmorItem.Type.HELMET, 11,
+            ArmorItem.Type.BODY, 16
+    ));
 
-    public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS =
-            DeferredRegister.create(Registries.ARMOR_MATERIAL, SuperCraftingMod.MODID);
+    private static ArmorMaterial build(SuperTier tier, int[] defensePerSlot, Supplier<Ingredient> repair) {
+        var defense = new EnumMap<ArmorItem.Type, Integer>(ArmorItem.Type.class);
+        defense.put(ArmorItem.Type.BOOTS, defensePerSlot[3]);
+        defense.put(ArmorItem.Type.LEGGINGS, defensePerSlot[2]);
+        defense.put(ArmorItem.Type.CHESTPLATE, defensePerSlot[1]);
+        defense.put(ArmorItem.Type.HELMET, defensePerSlot[0]);
+        var layers = List.of(new ArmorMaterial.Layer(
+                ResourceLocation.fromNamespaceAndPath("minecraft", "netherite"), "", false));
+        var toughness = tier == SuperTier.ULTIMATE ? 4.0f : 2.0f;
+        var knockback = tier == SuperTier.ULTIMATE ? 0.15f : 0.0f;
+        return new ArmorMaterial(defense, tier.getEnchantmentValue(),
+                SoundEvents.ARMOR_EQUIP_NETHERITE, repair, layers, toughness, knockback);
+    }
 
-    // ──────────────────────────────────────────────
-    //  Armor material holders
-    // ──────────────────────────────────────────────
+    public static final ArmorMaterial IRON_PLUS = build(SuperTier.IRON_PLUS, new int[]{2, 5, 6, 2}, () -> Ingredient.of(Items.IRON_INGOT));
+    public static final ArmorMaterial GOLD_PLUS = build(SuperTier.GOLD_PLUS, new int[]{3, 6, 8, 3}, () -> Ingredient.of(Items.GOLD_INGOT));
+    public static final ArmorMaterial DIAMOND_PLUS = build(SuperTier.DIAMOND_PLUS, new int[]{3, 6, 8, 1}, () -> Ingredient.of(Items.DIAMOND));
+    public static final ArmorMaterial NETHERITE_PLUS = build(SuperTier.NETHERITE_PLUS, new int[]{3, 8, 7, 4}, () -> Ingredient.of(Items.NETHERITE_INGOT));
+    public static final ArmorMaterial ULTIMATE = build(SuperTier.ULTIMATE, new int[]{5, 10, 10, 6}, () -> Ingredient.of(Items.NETHERITE_INGOT));
 
-    public static final Holder<ArmorMaterial> IRON_PLUS =
-            ARMOR_MATERIALS.register("super_iron", () -> material(
-                    Map.of(ArmorItem.Type.HELMET, 2, ArmorItem.Type.CHESTPLATE, 5,
-                            ArmorItem.Type.LEGGINGS, 6, ArmorItem.Type.BOOTS, 2),
-                    15, 1.0f, 0.0f, () -> Ingredient.of(Items.IRON_INGOT),
-                    ResourceLocation.withDefaultNamespace("iron")));
-
-    public static final Holder<ArmorMaterial> GOLD_PLUS =
-            ARMOR_MATERIALS.register("super_gold", () -> material(
-                    Map.of(ArmorItem.Type.HELMET, 2, ArmorItem.Type.CHESTPLATE, 6,
-                            ArmorItem.Type.LEGGINGS, 7, ArmorItem.Type.BOOTS, 3),
-                    20, 1.5f, 0.0f, () -> Ingredient.of(Items.GOLD_INGOT),
-                    ResourceLocation.withDefaultNamespace("gold")));
-
-    public static final Holder<ArmorMaterial> DIAMOND_PLUS =
-            ARMOR_MATERIALS.register("super_diamond", () -> material(
-                    Map.of(ArmorItem.Type.HELMET, 3, ArmorItem.Type.CHESTPLATE, 7,
-                            ArmorItem.Type.LEGGINGS, 8, ArmorItem.Type.BOOTS, 3),
-                    18, 2.0f, 0.0f, () -> Ingredient.of(Items.DIAMOND),
-                    ResourceLocation.withDefaultNamespace("diamond")));
-
-    public static final Holder<ArmorMaterial> NETHERITE_PLUS =
-            ARMOR_MATERIALS.register("super_netherite", () -> material(
-                    Map.of(ArmorItem.Type.HELMET, 4, ArmorItem.Type.CHESTPLATE, 8,
-                            ArmorItem.Type.LEGGINGS, 9, ArmorItem.Type.BOOTS, 4),
-                    22, 3.0f, 0.1f, () -> Ingredient.of(Items.NETHERITE_INGOT),
-                    ResourceLocation.withDefaultNamespace("netherite")));
-
-    public static final Holder<ArmorMaterial> ULTIMATE =
-            ARMOR_MATERIALS.register("super_ultimate", () -> material(
-                    Map.of(ArmorItem.Type.HELMET, 5, ArmorItem.Type.CHESTPLATE, 10,
-                            ArmorItem.Type.LEGGINGS, 11, ArmorItem.Type.BOOTS, 5),
-                    25, 4.0f, 0.2f, () -> Ingredient.of(Items.NETHERITE_BLOCK),
-                    ResourceLocation.withDefaultNamespace("netherite")));
-
-    // ──────────────────────────────────────────────
-    //  Helper
-    // ──────────────────────────────────────────────
-
-    private static ArmorMaterial material(Map<ArmorItem.Type, Integer> defense,
-                                           int enchantValue,
-                                           float toughness,
-                                           float knockbackResistance,
-                                           Supplier<Ingredient> repairIngredient,
-                                           ResourceLocation texture) {
-        EnumMap<ArmorItem.Type, Integer> fullDefense = new EnumMap<>(ArmorItem.Type.class);
-        for (ArmorItem.Type type : ArmorItem.Type.values()) {
-            fullDefense.put(type, defense.getOrDefault(type, 0));
-        }
-        return new ArmorMaterial(
-                fullDefense,
-                enchantValue,
-                SoundEvents.ARMOR_EQUIP_NETHERITE,
-                repairIngredient,
-                List.of(new ArmorMaterial.Layer(texture)),
-                toughness,
-                knockbackResistance
-        );
+    private SuperArmorMaterial() {
     }
 }

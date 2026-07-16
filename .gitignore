@@ -1,25 +1,20 @@
 .gradle/
 build/
-build-root/
+out/
+*.jar
+*.class
+bin/
+src/generated/.cache
+
+# IDE
 .idea/
 *.iml
-*.iws
-*.ipr
-out/
+.vscode/
+
+# OS
 .DS_Store
 Thumbs.db
-Desktop.ini
-*.class
-*.jar
-!gradle/wrapper/gradle-wrapper.jar
-!gradle/wrapper/gradle-wrapper.properties
-hs_err_pid*
-replay_pid*
-*.log
-run/
-.env
-.env.local
-.env.*.local
 
-# Local build output
-mods/
+# Environnement
+.env
+*.log
