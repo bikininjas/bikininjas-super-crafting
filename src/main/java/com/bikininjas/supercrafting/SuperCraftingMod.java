@@ -1,15 +1,18 @@
 package com.bikininjas.supercrafting;
 
+import com.bikininjas.corelib.log.LogManager;
+import com.bikininjas.corelib.log.ModLogger;
 import com.bikininjas.corelib.network.NetworkHandler;
+import com.bikininjas.corelib.recipe.RecipeAPI;
 import com.bikininjas.supercrafting.item.ModItems;
 import com.bikininjas.supercrafting.recipe.ExoticRecipeManager;
 import com.bikininjas.supercrafting.recipe.FusionRecipeManager;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Super Crafting mod entry point.
@@ -22,25 +25,29 @@ public final class SuperCraftingMod {
 
     public static final String MODID = "super_crafting";
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MODID);
+    private static final ModLogger LOGGER = LogManager.getLogger(MODID, SuperCraftingMod.class);
 
     public SuperCraftingMod(IEventBus modBus) {
-        // Register items on the mod bus
         ModItems.ITEMS.register(modBus);
         ModItems.CREATIVE_TABS.register(modBus);
-
-        // Register core-lib network payloads
         NetworkHandler.register(modBus);
-
-        // Static initializer registers EnchantHandler on the NeoForge bus
         EnchantHandler.init();
 
-        // Force-load recipe managers + enchant handler on server start
         NeoForge.EVENT_BUS.addListener((ServerAboutToStartEvent event) -> {
-            FusionRecipeManager.createAll();
-            ExoticRecipeManager.createAll();
-            EnchantHandler.init();
-            LOGGER.info("Super Crafting modules initialized");
+            var server = event.getServer();
+            int idx = 0;
+            for (var recipe : FusionRecipeManager.createAll()) {
+                var id = MODID + ":fusion_" + (idx++);
+                RecipeAPI.addRecipe(id, new RecipeHolder<>(
+                        ResourceLocation.parse(id), recipe));
+            }
+            for (var recipe : ExoticRecipeManager.createAll()) {
+                var id = MODID + ":exotic_" + (idx++);
+                RecipeAPI.addRecipe(id, new RecipeHolder<>(
+                        ResourceLocation.parse(id), recipe));
+            }
+            RecipeAPI.applyPending(server);
+            LOGGER.info("Super Crafting recipes registered");
         });
     }
 }

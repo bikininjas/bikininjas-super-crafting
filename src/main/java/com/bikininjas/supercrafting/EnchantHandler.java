@@ -1,10 +1,11 @@
 package com.bikininjas.supercrafting;
 
 import com.bikininjas.corelib.enchantment.EnchantmentUtils;
+import com.bikininjas.corelib.log.LogManager;
+import com.bikininjas.corelib.log.ModLogger;
 import com.bikininjas.supercrafting.item.ModItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -14,8 +15,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ import java.util.List;
  */
 public final class EnchantHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("super_crafting");
+    private static final ModLogger LOGGER = LogManager.getLogger("super_crafting", EnchantHandler.class);
 
     private EnchantHandler() {
     }
