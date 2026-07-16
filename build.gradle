@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-    id 'net.neoforged.moddev' version '2.0.142'
+    alias(libs.plugins.moddev)
 }
 
 version = project.mod_version
@@ -10,7 +10,7 @@ base {
     archivesName = "bikininjas-${project.mod_id}"
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(project.java_version as int)
 
 neoForge {
     version = project.neo_version
@@ -62,8 +62,8 @@ repositories {
 
 dependencies {
     // core-lib (composite build in dev, flatDir JAR in CI)
-    implementation "com.bikininjas.corelib:core_lib:${project.core_lib_version}"
-    implementation 'org.jetbrains:annotations:26.0.2'
+    implementation libs.core.lib
+    implementation libs.jetbrains.annotations
 }
 
 // ============================================================
@@ -80,7 +80,8 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_license             : project.mod_license,
             mod_version             : project.mod_version,
             mod_authors             : project.mod_authors,
-            mod_description         : project.mod_description
+            mod_description         : project.mod_description,
+            core_lib_version_range  : project.core_lib_version_range
     ]
     inputs.properties replaceProperties
     expand replaceProperties
