@@ -61,8 +61,8 @@ repositories {
 }
 
 dependencies {
-    // core-lib (composite build in dev, flatDir JAR in CI)
-    implementation libs.core.lib
+    // core-lib — resolved via composite build locally; CI passes concrete version via -PcoreLibVersion
+    implementation "com.bikininjas.corelib:core_lib:${project.findProperty('coreLibVersion') ?: '1.+'}"
     implementation libs.jetbrains.annotations
 
     // NeoForge Test Framework — for @ForEachTest / @EmptyTemplate / ExtendedGameTestHelper
