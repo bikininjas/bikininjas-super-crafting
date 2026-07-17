@@ -78,17 +78,25 @@ public final class SuperCraftingMod {
 
         NeoForge.EVENT_BUS.addListener((ServerAboutToStartEvent event) -> {
             var server = event.getServer();
-            int idx = 0;
-            for (var recipe : FusionRecipeManager.createAll()) {
-                var id = MODID + ":fusion_" + (idx++);
-                RecipeAPI.addRecipe(id, new RecipeHolder<>(
-                        ResourceLocation.parse(id), recipe));
+            var recipeManager = server.getRecipeManager();
+
+            var fusionRecipes = FusionRecipeManager.createAll();
+            var fusionIds = FusionRecipeManager.getRecipeIds();
+            for (int i = 0; i < fusionRecipes.size(); i++) {
+                var id = fusionIds.get(i);
+                // Skip if a datapack recipe already exists (KubeJS may have removed it)
+                if (recipeManager.byKey(id).isPresent()) continue;
+                RecipeAPI.addRecipe(id.toString(), new RecipeHolder<>(id, fusionRecipes.get(i)));
             }
-            for (var recipe : ExoticRecipeManager.createAll()) {
-                var id = MODID + ":exotic_" + (idx++);
-                RecipeAPI.addRecipe(id, new RecipeHolder<>(
-                        ResourceLocation.parse(id), recipe));
+
+            var exoticRecipes = ExoticRecipeManager.createAll();
+            var exoticIds = ExoticRecipeManager.getRecipeIds();
+            for (int i = 0; i < exoticRecipes.size(); i++) {
+                var id = exoticIds.get(i);
+                if (recipeManager.byKey(id).isPresent()) continue;
+                RecipeAPI.addRecipe(id.toString(), new RecipeHolder<>(id, exoticRecipes.get(i)));
             }
+
             RecipeAPI.applyPending(server);
             LOGGER.info("Super Crafting recipes registered");
         });

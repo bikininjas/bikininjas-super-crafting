@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EAE"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:carrot"
+    },
+    "B": {
+      "item": "minecraft:golden_carrot"
+    },
+    "C": {
+      "item": "minecraft:ender_pearl"
+    },
+    "D": {
+      "item": "minecraft:spider_eye"
+    },
+    "E": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "result": {
+    "id": "super_crafting:super_carrot",
+    "count": 1
+  }
+}

@@ -9,10 +9,12 @@ import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +25,17 @@ public final class ExoticRecipeManager {
 
     private static final ModLogger LOGGER = LogManager.getLogger("super_crafting", ExoticRecipeManager.class);
 
+    private static final List<ResourceLocation> recipeIds = new ArrayList<>();
+
     private ExoticRecipeManager() {}
+
+    /**
+     * Returns an unmodifiable view of the recipe IDs in creation order.
+     * Must be called AFTER {@link #createAll()}.
+     */
+    public static @NotNull List<ResourceLocation> getRecipeIds() {
+        return Collections.unmodifiableList(recipeIds);
+    }
 
     /**
      * Create all exotic food recipes.
@@ -75,6 +87,7 @@ public final class ExoticRecipeManager {
                                                  Map<Character, Ingredient> key,
                                                  String row1, String row2, String row3,
                                                  ItemLike output) {
+        recipeIds.add(ResourceLocation.fromNamespaceAndPath("super_crafting", name));
         var pattern = ShapedRecipePattern.of(key, List.of(row1, row2, row3));
         return new ShapedRecipe("super_crafting", CraftingBookCategory.MISC, pattern,
                 new ItemStack(output));

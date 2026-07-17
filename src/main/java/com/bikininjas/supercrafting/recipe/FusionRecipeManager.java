@@ -14,6 +14,7 @@ import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,6 +31,14 @@ public final class FusionRecipeManager {
     private FusionRecipeManager() {}
 
     private static final List<ResourceLocation> recipeIds = new ArrayList<>();
+
+    /**
+     * Returns an unmodifiable view of the recipe IDs in creation order.
+     * Must be called AFTER {@link #createAll()}.
+     */
+    public static @NotNull List<ResourceLocation> getRecipeIds() {
+        return Collections.unmodifiableList(recipeIds);
+    }
 
     // == Tool ingredient tiers (8 items each) ==================================
 

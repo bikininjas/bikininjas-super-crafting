@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ABC",
+    "DBE",
+    "FFF"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:melon_slice"
+    },
+    "B": {
+      "item": "minecraft:glistering_melon_slice"
+    },
+    "C": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "D": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "E": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "F": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "id": "super_crafting:super_melon",
+    "count": 1
+  }
+}
