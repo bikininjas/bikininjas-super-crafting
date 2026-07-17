@@ -36,17 +36,26 @@ public final class SuperArmorMaterial {
         defense.put(ArmorItem.Type.HELMET, defensePerSlot[0]);
         var layers = List.of(new ArmorMaterial.Layer(
                 ResourceLocation.fromNamespaceAndPath("minecraft", "netherite"), "", false));
-        var toughness = tier == SuperTier.ULTIMATE ? 4.0f : 2.0f;
-        var knockback = tier == SuperTier.ULTIMATE ? 0.15f : 0.0f;
+        var toughness = switch (tier) {
+            case IRON_PLUS, GOLD_PLUS -> 0.0f;
+            case DIAMOND_PLUS -> 2.0f;
+            case NETHERITE_PLUS -> 3.0f;
+            case ULTIMATE -> 4.0f;
+        };
+        var knockback = switch (tier) {
+            case NETHERITE_PLUS -> 0.1f;
+            case ULTIMATE -> 0.15f;
+            default -> 0.0f;
+        };
         return new ArmorMaterial(defense, tier.getEnchantmentValue(),
                 SoundEvents.ARMOR_EQUIP_NETHERITE, repair, layers, toughness, knockback);
     }
 
-    public static final ArmorMaterial IRON_PLUS = build(SuperTier.IRON_PLUS, new int[]{2, 5, 6, 2}, () -> Ingredient.of(Items.IRON_INGOT));
-    public static final ArmorMaterial GOLD_PLUS = build(SuperTier.GOLD_PLUS, new int[]{3, 6, 8, 3}, () -> Ingredient.of(Items.GOLD_INGOT));
-    public static final ArmorMaterial DIAMOND_PLUS = build(SuperTier.DIAMOND_PLUS, new int[]{3, 6, 8, 3}, () -> Ingredient.of(Items.DIAMOND));
-    public static final ArmorMaterial NETHERITE_PLUS = build(SuperTier.NETHERITE_PLUS, new int[]{3, 8, 7, 4}, () -> Ingredient.of(Items.NETHERITE_INGOT));
-    public static final ArmorMaterial ULTIMATE = build(SuperTier.ULTIMATE, new int[]{5, 10, 10, 6}, () -> Ingredient.of(Items.NETHERITE_INGOT));
+    public static final ArmorMaterial IRON_PLUS = build(SuperTier.IRON_PLUS, new int[]{3, 7, 6, 2}, () -> Ingredient.of(Items.IRON_INGOT));
+    public static final ArmorMaterial GOLD_PLUS = build(SuperTier.GOLD_PLUS, new int[]{3, 6, 5, 2}, () -> Ingredient.of(Items.GOLD_INGOT));
+    public static final ArmorMaterial DIAMOND_PLUS = build(SuperTier.DIAMOND_PLUS, new int[]{4, 8, 7, 3}, () -> Ingredient.of(Items.DIAMOND));
+    public static final ArmorMaterial NETHERITE_PLUS = build(SuperTier.NETHERITE_PLUS, new int[]{4, 9, 7, 4}, () -> Ingredient.of(Items.NETHERITE_INGOT));
+    public static final ArmorMaterial ULTIMATE = build(SuperTier.ULTIMATE, new int[]{6, 11, 9, 6}, () -> Ingredient.of(Items.NETHERITE_INGOT));
 
     private SuperArmorMaterial() {
     }

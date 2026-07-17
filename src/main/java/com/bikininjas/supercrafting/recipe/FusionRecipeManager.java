@@ -47,7 +47,7 @@ public final class FusionRecipeManager {
 
     /** Tier 3 — Deep Vault: rare ores, obsidian, echoes. */
     private static final ItemLike[] TOOL_T3 = {
-            Items.DIAMOND_BLOCK, Items.EMERALD_BLOCK, Items.OBSIDIAN, Items.CRYING_OBSIDIAN,
+            Items.DIAMOND, Items.EMERALD, Items.OBSIDIAN, Items.CRYING_OBSIDIAN,
             Items.NETHERITE_SCRAP, Items.GOLDEN_APPLE, Items.GHAST_TEAR, Items.PHANTOM_MEMBRANE
     };
 
@@ -59,7 +59,7 @@ public final class FusionRecipeManager {
 
     /** Tier 5 — Apotheosis: end, dragon, the ultimate. */
     private static final ItemLike[] TOOL_T5 = {
-            Items.NETHER_STAR, Items.BEACON, Items.DRAGON_BREATH, Items.END_CRYSTAL,
+            Items.NETHER_STAR, Items.ELYTRA, Items.DRAGON_BREATH, Items.END_CRYSTAL,
             Items.ENCHANTED_GOLDEN_APPLE, Items.TOTEM_OF_UNDYING, Items.SPONGE, Items.CONDUIT
     };
 
@@ -79,7 +79,7 @@ public final class FusionRecipeManager {
 
     /** Tier 3 — Diamond Plating: heavy minerals, mechanical precision. */
     private static final ItemLike[] ARMOR_T3 = {
-            Items.DIAMOND, Items.EMERALD, Items.CHAIN, Items.IRON_BARS,
+            Items.DIAMOND_BLOCK, Items.EMERALD_BLOCK, Items.CHAIN, Items.IRON_BARS,
             Items.BELL, Items.COMPASS, Items.CLOCK, Items.ENDER_EYE
     };
 

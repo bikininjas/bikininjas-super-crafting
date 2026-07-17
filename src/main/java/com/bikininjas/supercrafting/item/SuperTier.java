@@ -16,29 +16,29 @@ import org.jetbrains.annotations.NotNull;
 public enum SuperTier implements Tier {
 
     /**
-     * 9 iron → 1 Iron Plus
+     * Tier 1 — Workhorse: balanced durability (500), attack 5.0, speed 7.5.
      */
-    IRON_PLUS(500, 4.0f, 7.0f, 15, Tiers.IRON, "iron_plus", () -> Ingredient.of(Items.IRON_INGOT)),
+    IRON_PLUS(500, 5.0f, 7.5f, 14, Tiers.IRON, "iron_plus", () -> Ingredient.of(Items.IRON_INGOT)),
 
     /**
-     * 9 gold → 1 Gold Plus
+     * Tier 2 — Swift Striker: low durability (500), attack 4.0, speed 12.0, best enchant 25.
      */
-    GOLD_PLUS(750, 5.5f, 8.0f, 20, Tiers.GOLD, "gold_plus", () -> Ingredient.of(Items.GOLD_INGOT)),
+    GOLD_PLUS(500, 4.0f, 12.0f, 25, Tiers.GOLD, "gold_plus", () -> Ingredient.of(Items.GOLD_INGOT)),
 
     /**
-     * 9 diamond → 1 Diamond Plus
+     * Tier 3 — Heavy Hitter: vanilla diamond durability (1561), attack 7.5, speed 9.0.
      */
-    DIAMOND_PLUS(1200, 7.0f, 9.0f, 18, Tiers.DIAMOND, "diamond_plus", () -> Ingredient.of(Items.DIAMOND)),
+    DIAMOND_PLUS(1561, 7.5f, 9.0f, 16, Tiers.DIAMOND, "diamond_plus", () -> Ingredient.of(Items.DIAMOND)),
 
     /**
-     * 9 netherite → 1 Netherite Plus
+     * Tier 4 — Endgame Standard: vanilla netherite durability (2031), attack 9.0, speed 10.5.
      */
-    NETHERITE_PLUS(1800, 9.0f, 10.0f, 22, Tiers.NETHERITE, "netherite_plus", () -> Ingredient.of(Items.NETHERITE_INGOT)),
+    NETHERITE_PLUS(2031, 9.0f, 10.5f, 18, Tiers.NETHERITE, "netherite_plus", () -> Ingredient.of(Items.NETHERITE_INGOT)),
 
     /**
-     * 9 netherite blocks → 1 Ultimate
+     * Tier 5 — Transcendent: highest durability (3500), attack 13.0, speed 14.0, max enchant 25.
      */
-    ULTIMATE(3000, 12.0f, 12.0f, 25, Tiers.NETHERITE, "ultimate", () -> Ingredient.of(Blocks.NETHERITE_BLOCK));
+    ULTIMATE(3500, 13.0f, 14.0f, 25, Tiers.NETHERITE, "ultimate", () -> Ingredient.of(Blocks.NETHERITE_BLOCK));
 
     private final int uses;
     private final float speed;
