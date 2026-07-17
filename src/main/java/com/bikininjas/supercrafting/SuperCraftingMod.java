@@ -8,6 +8,8 @@ import com.bikininjas.corelib.network.NetworkHandler;
 import com.bikininjas.corelib.recipe.RecipeAPI;
 import com.bikininjas.supercrafting.item.ModItems;
 import com.bikininjas.supercrafting.SuperFunnyIntegration;
+import com.bikininjas.supercrafting.armor.SetBonuses;
+import com.bikininjas.supercrafting.item.RightClickAbilities;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -32,6 +34,8 @@ public final class SuperCraftingMod {
         NetworkHandler.register(modBus);
         EnchantHandler.init();
         SuperFunnyIntegration.init();
+        SetBonuses.init();
+        RightClickAbilities.init();
 
         BikiniConfigRegistry.registerBool("super_crafting", "ultimate_effects", "Ultimate Effects", true);
         BikiniConfigRegistry.registerBool("super_crafting", "auto_enchant", "Auto-Enchant on Craft", true);

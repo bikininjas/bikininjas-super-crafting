@@ -137,6 +137,13 @@ public final class ModItems {
                     .build());
 
     // ================================================================
+    // Repair
+    // ================================================================
+
+    public static final DeferredItem<Item> SUPER_REPAIR_KIT = ITEMS.registerItem("super_repair_kit",
+            props -> new SuperRepairKitItem(props.stacksTo(1).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    // ================================================================
     // Helpers
     // ================================================================
 

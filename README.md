@@ -19,7 +19,7 @@ A Minecraft NeoForge mod that adds 5 fusion tiers of super-powered tools, armor,
 
 ## Ultimate Effects
 - ⚡ Sword: 30% lightning strike
-- 💎 Pickaxe: 50% bonus XP
+- 💎 Pickaxe: 50% bonus XP + right-click veinmine 3×3
 - 🚀 Axe: launches entities
 - 🏔 Shovel: silverfish spawn
 - 🐔 Hoe: transforms mobs into chickens
@@ -27,6 +27,21 @@ A Minecraft NeoForge mod that adds 5 fusion tiers of super-powered tools, armor,
 - 🛡 Chestplate: 25% damage reflect
 - 🏃 Leggings: Speed II
 - 🌈 Boots: rainbow particle trail
+
+## Set Bonuses
+Wearing a full armor set of the same tier grants a permanent potion effect:
+- Iron+: Haste I
+- Gold+: Luck I
+- Diamond+: Strength I
+- Netherite+: Resistance I
+- Ultimate: Creative flight (5s burst every 30s)
+
+## Right-Click Abilities
+- **Super Pickaxe** right-click: veinmine 3×3 (breaks all connected ore blocks)
+- **Super Sword** right-click: dash forward 2 blocks
+
+## Super Repair Kit
+Craftable item (9 netherite scraps) — repairs any held super item by 50% durability on right-click. Consumes one kit per use.
 
 ## Auto-Enchant
 Crafting any super item automatically applies enchantments:
