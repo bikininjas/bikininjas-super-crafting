@@ -4,16 +4,12 @@ import com.bikininjas.corelib.log.LogManager;
 import com.bikininjas.corelib.log.ModLogger;
 import com.bikininjas.supercrafting.SuperCraftingMod;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -58,14 +54,22 @@ public final class RightClickAbilities {
 
             // Pickaxe → veinmine
             if (stack.getItem() instanceof PickaxeItem && isSuperItem(stack)) {
-                veinmine((ServerLevel) player.level(), (ServerPlayer) player, event.getPos().relative(event.getFace()));
+                var face = event.getFace();
+                if (face == null) return;
+                if (!(player instanceof ServerPlayer serverPlayer)) return;
+                if (serverPlayer.getCooldowns().isOnCooldown(stack.getItem())) return;
+                veinmine((ServerLevel) player.level(), serverPlayer, event.getPos().relative(face));
+                serverPlayer.getCooldowns().addCooldown(stack.getItem(), 30);
                 event.setCanceled(true);
                 return;
             }
 
             // Sword → dash
             if (stack.getItem() instanceof SwordItem && isSuperItem(stack)) {
+                if (!(player instanceof ServerPlayer serverPlayer)) return;
+                if (serverPlayer.getCooldowns().isOnCooldown(stack.getItem())) return;
                 dash(player);
+                serverPlayer.getCooldowns().addCooldown(stack.getItem(), 100);
                 event.setCanceled(true);
             }
         }
@@ -85,25 +89,22 @@ public final class RightClickAbilities {
     private static void veinmine(@NotNull ServerLevel level,
                                   @NotNull ServerPlayer player,
                                   @NotNull BlockPos center) {
-        BlockPos targetPos = center;
         int broken = 0;
+        outer:
         for (int dx = -1; dx <= 1; dx++) {
             for (int dy = -1; dy <= 1; dy++) {
                 for (int dz = -1; dz <= 1; dz++) {
-                    BlockPos pos = targetPos.offset(dx, dy, dz);
+                    BlockPos pos = center.offset(dx, dy, dz);
                     BlockState state = level.getBlockState(pos);
-                    if (state.is(BlockTags.MINEABLE_WITH_PICKAXE)) {
-                        var mainHandItem = player.getMainHandItem();
-                        if (mainHandItem.isEmpty()) {
-                            break;
-                        }
-                        // Simulate tool usage
-                        boolean canHarvest = mainHandItem.isCorrectToolForDrops(state);
-                        mainHandItem.hurtAndBreak(1, level, player, item -> {
-                        });
-                        level.destroyBlock(pos, true, player);
-                        broken++;
+                    var mainHandItem = player.getMainHandItem();
+                    if (mainHandItem.isEmpty()) {
+                        break outer;
                     }
+                    if (!state.is(BlockTags.MINEABLE_WITH_PICKAXE)) continue;
+                    if (!mainHandItem.isCorrectToolForDrops(state)) continue;
+                    mainHandItem.hurtAndBreak(1, level, player, item -> {});
+                    level.destroyBlock(pos, true, player);
+                    broken++;
                 }
             }
         }

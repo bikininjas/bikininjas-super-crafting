@@ -113,6 +113,7 @@ public final class SetBonuses {
                 return;
             }
 
+            boolean found = false;
             for (BonusTier tier : BonusTier.values()) {
                 if (tier.isWearing(player)) {
                     if (tier == BonusTier.ULTIMATE) {
@@ -120,8 +121,16 @@ public final class SetBonuses {
                     } else if (tier.effect != null) {
                         player.addEffect(new MobEffectInstance(tier.effect, 200, 0, true, false));
                     }
-                    return; // only one tier applies at a time
+                    found = true;
+                    break;
                 }
+            }
+
+            // Revoke flight when Ultimate set is removed
+            if (!found && player.getAbilities().mayfly && !player.isCreative() && !player.isSpectator()) {
+                player.getAbilities().mayfly = false;
+                player.getAbilities().flying = false;
+                player.onUpdateAbilities();
             }
         }
 
@@ -140,6 +149,7 @@ public final class SetBonuses {
         int ticks = ultimateFlightTicks.getOrDefault(id, 0) + 1;
         if (ticks >= 600) { // 30s at 20 TPS
             player.getAbilities().mayfly = true;
+            player.onUpdateAbilities();
             ticks = 0;
         }
         // Allow flight for next 5 seconds, then revoke
@@ -147,6 +157,7 @@ public final class SetBonuses {
             if (!player.isCreative() && !player.isSpectator()) {
                 player.getAbilities().mayfly = false;
                 player.getAbilities().flying = false;
+                player.onUpdateAbilities();
             }
         }
         ultimateFlightTicks.put(id, ticks);

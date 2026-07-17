@@ -3,6 +3,7 @@ package com.bikininjas.supercrafting.item;
 import com.bikininjas.corelib.log.LogManager;
 import com.bikininjas.corelib.log.ModLogger;
 import com.bikininjas.supercrafting.SuperCraftingMod;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -37,7 +38,7 @@ public class SuperRepairKitItem extends Item {
                 ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
         ItemStack toRepair = player.getItemInHand(otherHand);
 
-        if (toRepair.isEmpty() || !toRepair.isDamaged()) {
+        if (toRepair.isEmpty() || !toRepair.isDamaged() || !isSuperItem(toRepair)) {
             return InteractionResultHolder.fail(kit);
         }
 
@@ -49,5 +50,10 @@ public class SuperRepairKitItem extends Item {
         }
 
         return InteractionResultHolder.consume(kit);
+    }
+
+    private static boolean isSuperItem(@NotNull net.minecraft.world.item.ItemStack stack) {
+        var key = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        return key != null && SuperCraftingMod.MODID.equals(key.getNamespace());
     }
 }
