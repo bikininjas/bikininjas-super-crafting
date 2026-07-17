@@ -261,65 +261,82 @@ public final class SuperFunnyIntegration {
             }
             List<Component> tooltip = event.getToolTip();
 
-            ChatFormatting tierColor;
-            String tierName;
-            int[] armorDefense = null;
+            boolean isFood = path.contains("apple") || path.contains("carrot") || path.contains("melon")
+                    || path.contains("chorus") || path.contains("feast");
+            boolean isArmor = path.contains("helmet") || path.contains("chestplate")
+                    || path.contains("leggings") || path.contains("boots");
+            boolean isTool = path.contains("sword") || path.contains("pickaxe")
+                    || path.contains("axe") || path.contains("shovel") || path.contains("hoe");
 
-            if (path.contains("ultimate_")) {
-                tierColor = ChatFormatting.LIGHT_PURPLE;
-                tierName = "ULTIMATE";
-                armorDefense = new int[]{6, 11, 9, 6};
-            } else if (path.contains("netherite")) {
-                tierColor = ChatFormatting.DARK_PURPLE;
-                tierName = "Netherite+";
-                armorDefense = new int[]{4, 9, 7, 4};
-            } else if (path.contains("diamond")) {
-                tierColor = ChatFormatting.AQUA;
-                tierName = "Diamond+";
-                armorDefense = new int[]{4, 8, 7, 3};
-            } else if (path.contains("gold")) {
-                tierColor = ChatFormatting.GOLD;
-                tierName = "Gold+";
-                armorDefense = new int[]{3, 6, 5, 2};
-            } else {
-                tierColor = ChatFormatting.GRAY;
-                tierName = "Iron+";
-                armorDefense = new int[]{3, 7, 6, 2};
-            }
+            if (!isFood) {
+                ChatFormatting tierColor;
+                String tierName;
+                int[] armorDefense = null;
 
-            tooltip.add(Component.literal("◆ " + tierName + " Tier").withStyle(tierColor));
-
-            if (armorDefense != null) {
-                int def = -1;
-                if (path.contains("helmet")) {
-                    def = armorDefense[0];
-                } else if (path.contains("chestplate")) {
-                    def = armorDefense[1];
-                } else if (path.contains("leggings")) {
-                    def = armorDefense[2];
-                } else if (path.contains("boots")) {
-                    def = armorDefense[3];
+                if (path.contains("ultimate_")) {
+                    tierColor = ChatFormatting.LIGHT_PURPLE;
+                    tierName = "V — ULTIMATE";
+                    armorDefense = new int[]{6, 11, 9, 6};
+                } else if (path.contains("netherite")) {
+                    tierColor = ChatFormatting.DARK_PURPLE;
+                    tierName = "IV — Netherite+";
+                    armorDefense = new int[]{4, 9, 7, 4};
+                } else if (path.contains("diamond")) {
+                    tierColor = ChatFormatting.AQUA;
+                    tierName = "III — Diamond+";
+                    armorDefense = new int[]{4, 8, 7, 3};
+                } else if (path.contains("gold")) {
+                    tierColor = ChatFormatting.GOLD;
+                    tierName = "II — Gold+";
+                    armorDefense = new int[]{3, 6, 5, 2};
+                } else {
+                    tierColor = ChatFormatting.GRAY;
+                    tierName = "I — Iron+";
+                    armorDefense = new int[]{3, 7, 6, 2};
                 }
-                if (def >= 0) {
-                    tooltip.add(Component.literal("Defense: +" + def).withStyle(ChatFormatting.GRAY));
+
+                tooltip.add(Component.literal("◆ " + tierName).withStyle(tierColor));
+
+                if (isArmor) {
+                    int def = -1;
+                    if (path.contains("helmet")) def = armorDefense[0];
+                    else if (path.contains("chestplate")) def = armorDefense[1];
+                    else if (path.contains("leggings")) def = armorDefense[2];
+                    else if (path.contains("boots")) def = armorDefense[3];
+                    if (def >= 0) {
+                        tooltip.add(Component.literal("Defense: +" + def).withStyle(ChatFormatting.GRAY));
+                    }
+                }
+
+            if (isArmor) {
+                    tooltip.add(Component.literal("Auto-enchant: Protection IV, Unbreaking III, Mending").withStyle(ChatFormatting.DARK_GRAY));
+                } else if (isTool) {
+                    tooltip.add(Component.literal("Auto-enchant: Efficiency V, Unbreaking III, Fortune III, Mending").withStyle(ChatFormatting.DARK_GRAY));
                 }
             }
 
             if (path.contains("super_apple")) {
+                tooltip.add(Component.literal("◆ Special Food").withStyle(ChatFormatting.GOLD));
                 tooltip.add(Component.literal("Restores 10 Hunger").withStyle(ChatFormatting.GREEN));
                 tooltip.add(Component.literal("Regeneration II, Resistance I, Absorption I").withStyle(ChatFormatting.GREEN));
             } else if (path.contains("super_carrot")) {
+                tooltip.add(Component.literal("◆ Special Food").withStyle(ChatFormatting.GOLD));
                 tooltip.add(Component.literal("Restores 10 Hunger").withStyle(ChatFormatting.GREEN));
-                tooltip.add(Component.literal("Night Vision, Speed II").withStyle(ChatFormatting.GREEN));
+                tooltip.add(Component.literal("Night Vision 3min, Speed II").withStyle(ChatFormatting.GREEN));
             } else if (path.contains("super_melon")) {
+                tooltip.add(Component.literal("◆ Special Food").withStyle(ChatFormatting.GOLD));
                 tooltip.add(Component.literal("Restores 12 Hunger").withStyle(ChatFormatting.GREEN));
                 tooltip.add(Component.literal("Absorption III, Resistance I").withStyle(ChatFormatting.GREEN));
             } else if (path.contains("super_chorus")) {
+                tooltip.add(Component.literal("◆ Special Food").withStyle(ChatFormatting.GOLD));
                 tooltip.add(Component.literal("Restores 12 Hunger").withStyle(ChatFormatting.GREEN));
                 tooltip.add(Component.literal("Slow Falling III, Regeneration III").withStyle(ChatFormatting.GREEN));
+                tooltip.add(Component.literal("30% chance: Levitation I (fun!)").withStyle(ChatFormatting.LIGHT_PURPLE));
             } else if (path.contains("ultimate_feast")) {
+                tooltip.add(Component.literal("◆ ULTIMATE Food").withStyle(ChatFormatting.LIGHT_PURPLE));
                 tooltip.add(Component.literal("Restores 20 Hunger").withStyle(ChatFormatting.GREEN));
                 tooltip.add(Component.literal("Regeneration V, Strength II, Absorption V").withStyle(ChatFormatting.GREEN));
+                tooltip.add(Component.literal("Resistance III, Fire Resistance").withStyle(ChatFormatting.GREEN));
             }
 
             if (path.contains("ultimate_")) {
