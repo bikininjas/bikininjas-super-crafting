@@ -1,0 +1,61 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:netherite_block"
+    },
+    "title": {
+      "text": "🏆 ULTIMATE Power",
+      "color": "gold"
+    },
+    "description": {
+      "text": "Craft an ULTIMATE tier item"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/nether.png",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "super_crafting:root",
+  "criteria": {
+    "has_ultimate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "super_crafting:ultimate_sword"
+          },
+          {
+            "items": "super_crafting:ultimate_pickaxe"
+          },
+          {
+            "items": "super_crafting:ultimate_axe"
+          },
+          {
+            "items": "super_crafting:ultimate_shovel"
+          },
+          {
+            "items": "super_crafting:ultimate_hoe"
+          },
+          {
+            "items": "super_crafting:ultimate_helmet"
+          },
+          {
+            "items": "super_crafting:ultimate_chestplate"
+          },
+          {
+            "items": "super_crafting:ultimate_leggings"
+          },
+          {
+            "items": "super_crafting:ultimate_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ultimate"
+    ]
+  ]
+}

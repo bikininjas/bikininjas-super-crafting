@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "super_crafting:super_iron_sword"
+    },
+    "title": {
+      "text": "Super Crafting"
+    },
+    "description": {
+      "text": "Discover the power of super items"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "auto_start": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "requirements": [
+    [
+      "auto_start"
+    ]
+  ]
+}
