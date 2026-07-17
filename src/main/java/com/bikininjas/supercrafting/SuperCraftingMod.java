@@ -5,15 +5,14 @@ import com.bikininjas.corelib.config.BikiniConfigRegistry;
 import com.bikininjas.corelib.log.LogManager;
 import com.bikininjas.corelib.log.ModLogger;
 import com.bikininjas.corelib.network.NetworkHandler;
-import com.bikininjas.corelib.recipe.RecipeAPI;
+import com.bikininjas.supercrafting.data.FusionRecipeProvider;
 import com.bikininjas.supercrafting.item.ModItems;
 import com.bikininjas.supercrafting.SuperFunnyIntegration;
 import com.bikininjas.supercrafting.armor.SetBonuses;
 import com.bikininjas.supercrafting.item.RightClickAbilities;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 /**
  * Super Crafting mod entry point.
@@ -80,12 +79,13 @@ public final class SuperCraftingMod {
                 ModItems.ULTIMATE_HELMET, ModItems.ULTIMATE_CHESTPLATE,
                 ModItems.ULTIMATE_LEGGINGS, ModItems.ULTIMATE_BOOTS);
 
-        NeoForge.EVENT_BUS.addListener((ServerAboutToStartEvent event) -> {
-            var server = event.getServer();
-            // Recipes are provided as datapack JSONs (data/super_crafting/recipe/).
-            // KubeJS can modify/remove them without Java re-adding duplicates.
-            RecipeAPI.applyPending(server);
-            LOGGER.info("Super Crafting recipes loaded from datapack");
+        // DataGen: generate 60 fusion recipe JSONs via ./gradlew runData
+        modBus.addListener((GatherDataEvent event) -> {
+            var gen = event.getGenerator();
+            gen.addProvider(event.includeServer(),
+                    new FusionRecipeProvider(gen.getPackOutput(), event.getLookupProvider()));
         });
+
+        LOGGER.info("Super Crafting mod initialized");
     }
 }

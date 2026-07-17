@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_super_netherite_fishing_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": "super_crafting:super_netherite_fishing_rod"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "super_crafting:fusion_ultimate_fishing_rod"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_super_netherite_fishing_rod"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "super_crafting:fusion_ultimate_fishing_rod"
+    ]
+  }
+}

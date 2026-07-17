@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "super_crafting:super_apple"
+    },
+    "B": {
+      "item": "minecraft:golden_apple"
+    },
+    "C": {
+      "item": "minecraft:golden_carrot"
+    },
+    "D": {
+      "item": "minecraft:dragon_breath"
+    },
+    "E": {
+      "item": "minecraft:enchanted_golden_apple"
+    },
+    "F": {
+      "item": "minecraft:cooked_beef"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "S": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "pattern": [
+    "ACE",
+    "FNF",
+    "BDS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "super_crafting:ultimate_feast"
+  }
+}

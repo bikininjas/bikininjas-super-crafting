@@ -72,6 +72,9 @@ public final class SuperFunnyIntegration {
 
     public static final class EventHandler {
 
+        /** Recursion guard to prevent infinite reflect loops between two Ultimate chestplates. */
+        private static boolean reflecting = false;
+
         private EventHandler() {
         }
 
@@ -199,6 +202,9 @@ public final class SuperFunnyIntegration {
         // ULTIMATE CHESTPLATE — 25% damage reflect
         @SubscribeEvent
         static void onUltimateChestplateReflect(LivingIncomingDamageEvent event) {
+            if (reflecting) {
+                return;
+            }
             if (!(event.getEntity() instanceof LivingEntity victim)) {
                 return;
             }
@@ -212,7 +218,12 @@ public final class SuperFunnyIntegration {
 
             if (event.getSource().getEntity() instanceof LivingEntity attacker) {
                 float reflectDmg = event.getAmount() * 0.4f;
-                attacker.hurt(attacker.damageSources().magic(), reflectDmg);
+                reflecting = true;
+                try {
+                    attacker.hurt(attacker.damageSources().magic(), reflectDmg);
+                } finally {
+                    reflecting = false;
+                }
                 victim.level().playSound(null, victim.blockPosition(), SoundEvents.SHIELD_BLOCK, SoundSource.PLAYERS, 1.0F, 1.5F);
                 LOGGER.debug("ULTIMATE CHESTPLATE: Reflected {} dmg to {}", reflectDmg, attacker.getName().getString());
             }
@@ -278,23 +289,23 @@ public final class SuperFunnyIntegration {
                 if (path.contains("ultimate_")) {
                     tierColor = ChatFormatting.LIGHT_PURPLE;
                     tierName = "V — ULTIMATE";
-                    armorDefense = new int[]{6, 11, 9, 6};
+                    armorDefense = new int[]{8, 12, 10, 8};
                 } else if (path.contains("netherite")) {
                     tierColor = ChatFormatting.DARK_PURPLE;
                     tierName = "IV — Netherite+";
-                    armorDefense = new int[]{4, 9, 7, 4};
+                    armorDefense = new int[]{5, 9, 8, 5};
                 } else if (path.contains("diamond")) {
                     tierColor = ChatFormatting.AQUA;
                     tierName = "III — Diamond+";
-                    armorDefense = new int[]{4, 8, 7, 3};
+                    armorDefense = new int[]{4, 8, 7, 4};
                 } else if (path.contains("gold")) {
                     tierColor = ChatFormatting.GOLD;
                     tierName = "II — Gold+";
-                    armorDefense = new int[]{3, 6, 5, 2};
+                    armorDefense = new int[]{3, 7, 6, 3};
                 } else {
                     tierColor = ChatFormatting.GRAY;
                     tierName = "I — Iron+";
-                    armorDefense = new int[]{3, 7, 6, 2};
+                    armorDefense = new int[]{3, 7, 6, 3};
                 }
 
                 tooltip.add(MessageHelper.colored("◆ " + tierName, tierColor));

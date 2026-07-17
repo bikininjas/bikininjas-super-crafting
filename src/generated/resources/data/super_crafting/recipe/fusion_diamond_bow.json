@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "minecraft:bow"
+    },
+    {
+      "item": "minecraft:bow"
+    },
+    {
+      "item": "minecraft:bow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:string"
+    },
+    {
+      "item": "minecraft:string"
+    },
+    {
+      "item": "minecraft:string"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "super_crafting:super_diamond_bow"
+  }
+}

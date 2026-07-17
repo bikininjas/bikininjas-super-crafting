@@ -261,6 +261,7 @@ public final class EnchantHandler {
         map.put(enchantments.getOrThrow(Enchantments.LUCK_OF_THE_SEA), 3);
         map.put(enchantments.getOrThrow(Enchantments.LURE), 3);
         map.put(enchantments.getOrThrow(Enchantments.UNBREAKING), 3);
+        map.put(enchantments.getOrThrow(Enchantments.MENDING), 1);
         EnchantmentUtils.applyEnchantments(stack, map);
     }
 }

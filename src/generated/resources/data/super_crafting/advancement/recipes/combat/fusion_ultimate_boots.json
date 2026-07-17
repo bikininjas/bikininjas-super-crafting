@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_super_netherite_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "super_crafting:super_netherite_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "super_crafting:fusion_ultimate_boots"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_super_netherite_boots"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "super_crafting:fusion_ultimate_boots"
+    ]
+  }
+}
