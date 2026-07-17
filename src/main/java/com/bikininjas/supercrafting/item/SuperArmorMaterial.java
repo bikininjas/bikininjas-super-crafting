@@ -44,7 +44,7 @@ public final class SuperArmorMaterial {
 
     public static final ArmorMaterial IRON_PLUS = build(SuperTier.IRON_PLUS, new int[]{2, 5, 6, 2}, () -> Ingredient.of(Items.IRON_INGOT));
     public static final ArmorMaterial GOLD_PLUS = build(SuperTier.GOLD_PLUS, new int[]{3, 6, 8, 3}, () -> Ingredient.of(Items.GOLD_INGOT));
-    public static final ArmorMaterial DIAMOND_PLUS = build(SuperTier.DIAMOND_PLUS, new int[]{3, 6, 8, 1}, () -> Ingredient.of(Items.DIAMOND));
+    public static final ArmorMaterial DIAMOND_PLUS = build(SuperTier.DIAMOND_PLUS, new int[]{3, 6, 8, 3}, () -> Ingredient.of(Items.DIAMOND));
     public static final ArmorMaterial NETHERITE_PLUS = build(SuperTier.NETHERITE_PLUS, new int[]{3, 8, 7, 4}, () -> Ingredient.of(Items.NETHERITE_INGOT));
     public static final ArmorMaterial ULTIMATE = build(SuperTier.ULTIMATE, new int[]{5, 10, 10, 6}, () -> Ingredient.of(Items.NETHERITE_INGOT));
 

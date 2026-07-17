@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Applies super enchantments to crafted super items.
@@ -32,6 +33,41 @@ import java.util.List;
 public final class EnchantHandler {
 
     private static final ModLogger LOGGER = LogManager.getLogger("super_crafting", EnchantHandler.class);
+
+    private static final Set<Item> armorSet;
+    private static final Set<Item> toolSet;
+
+    static {
+        armorSet = Set.of(
+                ModItems.SUPER_IRON_HELMET.get(), ModItems.SUPER_IRON_CHESTPLATE.get(),
+                ModItems.SUPER_IRON_LEGGINGS.get(), ModItems.SUPER_IRON_BOOTS.get(),
+                ModItems.SUPER_GOLD_HELMET.get(), ModItems.SUPER_GOLD_CHESTPLATE.get(),
+                ModItems.SUPER_GOLD_LEGGINGS.get(), ModItems.SUPER_GOLD_BOOTS.get(),
+                ModItems.SUPER_DIAMOND_HELMET.get(), ModItems.SUPER_DIAMOND_CHESTPLATE.get(),
+                ModItems.SUPER_DIAMOND_LEGGINGS.get(), ModItems.SUPER_DIAMOND_BOOTS.get(),
+                ModItems.SUPER_NETHERITE_HELMET.get(), ModItems.SUPER_NETHERITE_CHESTPLATE.get(),
+                ModItems.SUPER_NETHERITE_LEGGINGS.get(), ModItems.SUPER_NETHERITE_BOOTS.get(),
+                ModItems.ULTIMATE_HELMET.get(), ModItems.ULTIMATE_CHESTPLATE.get(),
+                ModItems.ULTIMATE_LEGGINGS.get(), ModItems.ULTIMATE_BOOTS.get()
+        );
+        toolSet = Set.of(
+                ModItems.SUPER_IRON_SWORD.get(), ModItems.SUPER_GOLD_SWORD.get(),
+                ModItems.SUPER_DIAMOND_SWORD.get(), ModItems.SUPER_NETHERITE_SWORD.get(),
+                ModItems.ULTIMATE_SWORD.get(),
+                ModItems.SUPER_IRON_PICKAXE.get(), ModItems.SUPER_GOLD_PICKAXE.get(),
+                ModItems.SUPER_DIAMOND_PICKAXE.get(), ModItems.SUPER_NETHERITE_PICKAXE.get(),
+                ModItems.ULTIMATE_PICKAXE.get(),
+                ModItems.SUPER_IRON_AXE.get(), ModItems.SUPER_GOLD_AXE.get(),
+                ModItems.SUPER_DIAMOND_AXE.get(), ModItems.SUPER_NETHERITE_AXE.get(),
+                ModItems.ULTIMATE_AXE.get(),
+                ModItems.SUPER_IRON_SHOVEL.get(), ModItems.SUPER_GOLD_SHOVEL.get(),
+                ModItems.SUPER_DIAMOND_SHOVEL.get(), ModItems.SUPER_NETHERITE_SHOVEL.get(),
+                ModItems.ULTIMATE_SHOVEL.get(),
+                ModItems.SUPER_IRON_HOE.get(), ModItems.SUPER_GOLD_HOE.get(),
+                ModItems.SUPER_DIAMOND_HOE.get(), ModItems.SUPER_NETHERITE_HOE.get(),
+                ModItems.ULTIMATE_HOE.get()
+        );
+    }
 
     private EnchantHandler() {
     }
@@ -70,54 +106,11 @@ public final class EnchantHandler {
     }
 
     private static boolean isArmor(@NotNull Item item) {
-        return item == ModItems.SUPER_IRON_HELMET.get()
-                || item == ModItems.SUPER_IRON_CHESTPLATE.get()
-                || item == ModItems.SUPER_IRON_LEGGINGS.get()
-                || item == ModItems.SUPER_IRON_BOOTS.get()
-                || item == ModItems.SUPER_GOLD_HELMET.get()
-                || item == ModItems.SUPER_GOLD_CHESTPLATE.get()
-                || item == ModItems.SUPER_GOLD_LEGGINGS.get()
-                || item == ModItems.SUPER_GOLD_BOOTS.get()
-                || item == ModItems.SUPER_DIAMOND_HELMET.get()
-                || item == ModItems.SUPER_DIAMOND_CHESTPLATE.get()
-                || item == ModItems.SUPER_DIAMOND_LEGGINGS.get()
-                || item == ModItems.SUPER_DIAMOND_BOOTS.get()
-                || item == ModItems.SUPER_NETHERITE_HELMET.get()
-                || item == ModItems.SUPER_NETHERITE_CHESTPLATE.get()
-                || item == ModItems.SUPER_NETHERITE_LEGGINGS.get()
-                || item == ModItems.SUPER_NETHERITE_BOOTS.get()
-                || item == ModItems.ULTIMATE_HELMET.get()
-                || item == ModItems.ULTIMATE_CHESTPLATE.get()
-                || item == ModItems.ULTIMATE_LEGGINGS.get()
-                || item == ModItems.ULTIMATE_BOOTS.get();
+        return armorSet.contains(item);
     }
 
     private static boolean isTool(@NotNull Item item) {
-        return item == ModItems.SUPER_IRON_SWORD.get()
-                || item == ModItems.SUPER_GOLD_SWORD.get()
-                || item == ModItems.SUPER_DIAMOND_SWORD.get()
-                || item == ModItems.SUPER_NETHERITE_SWORD.get()
-                || item == ModItems.ULTIMATE_SWORD.get()
-                || item == ModItems.SUPER_IRON_PICKAXE.get()
-                || item == ModItems.SUPER_GOLD_PICKAXE.get()
-                || item == ModItems.SUPER_DIAMOND_PICKAXE.get()
-                || item == ModItems.SUPER_NETHERITE_PICKAXE.get()
-                || item == ModItems.ULTIMATE_PICKAXE.get()
-                || item == ModItems.SUPER_IRON_AXE.get()
-                || item == ModItems.SUPER_GOLD_AXE.get()
-                || item == ModItems.SUPER_DIAMOND_AXE.get()
-                || item == ModItems.SUPER_NETHERITE_AXE.get()
-                || item == ModItems.ULTIMATE_AXE.get()
-                || item == ModItems.SUPER_IRON_SHOVEL.get()
-                || item == ModItems.SUPER_GOLD_SHOVEL.get()
-                || item == ModItems.SUPER_DIAMOND_SHOVEL.get()
-                || item == ModItems.SUPER_NETHERITE_SHOVEL.get()
-                || item == ModItems.ULTIMATE_SHOVEL.get()
-                || item == ModItems.SUPER_IRON_HOE.get()
-                || item == ModItems.SUPER_GOLD_HOE.get()
-                || item == ModItems.SUPER_DIAMOND_HOE.get()
-                || item == ModItems.SUPER_NETHERITE_HOE.get()
-                || item == ModItems.ULTIMATE_HOE.get();
+        return toolSet.contains(item);
     }
 
     private static void applyArmorEnchants(@NotNull ItemStack stack,

@@ -116,6 +116,19 @@ public final class SuperFunnyIntegration {
             }
         }
 
+        // ULTIMATE SHOVEL — 20% chance silverfish on dig
+        @SubscribeEvent
+        static void onUltimateShovelBreak(BlockEvent.BreakEvent event) {
+            if (event.getPlayer().isCreative()) return;
+            ItemStack tool = event.getPlayer().getMainHandItem();
+            if (!isUltimateItem(tool) || !nameContains(tool, "shovel")) return;
+            if (RANDOM.nextFloat() > 0.2f) return;
+            if (event.getLevel() instanceof ServerLevel serverLevel) {
+                EntityType.SILVERFISH.spawn(serverLevel, event.getPos(), MobSpawnType.TRIGGERED);
+                LOGGER.debug("ULTIMATE SHOVEL: Silverfish spawned at {}", event.getPos());
+            }
+        }
+
         // ULTIMATE AXE — launch hit entity
         @SubscribeEvent
         static void onUltimateAxeHit(LivingDamageEvent.Post event) {
@@ -201,6 +214,17 @@ public final class SuperFunnyIntegration {
                 victim.level().playSound(null, victim.blockPosition(), SoundEvents.SHIELD_BLOCK, SoundSource.PLAYERS, 1.0F, 1.5F);
                 LOGGER.debug("ULTIMATE CHESTPLATE: Reflected {} dmg to {}", reflectDmg, attacker.getName().getString());
             }
+        }
+
+        // ULTIMATE LEGGINGS — Speed II while equipped
+        @SubscribeEvent
+        static void onUltimateLeggingsTick(PlayerTickEvent.Post event) {
+            if (!(event.getEntity() instanceof ServerPlayer player)) return;
+            ItemStack leggings = player.getInventory().getArmor(1); // leggings slot
+            if (leggings.isEmpty() || !isUltimateItem(leggings) || !nameContains(leggings, "leggings")) return;
+            if (player.tickCount % 60 != 0) return; // refresh every 3s
+            player.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.MOVEMENT_SPEED, 80, 1, true, false, false));
         }
 
         // ULTIMATE BOOTS — rainbow particle trail while sprinting
