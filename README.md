@@ -55,3 +55,10 @@ ServerEvents.recipes(event => {
 ## Dependencies
 - **core-lib** (required) — shared library
 - Minecraft 1.21.1, NeoForge
+
+
+## 🎛️ BikiniConfig Options
+Accessible via `/bn` in-game:
+- **Ultimate Effects**: Toggle special effects on Ultimate tier items
+- **Auto-Enchant on Craft**: Toggle automatic enchantment application when crafting super items
+
