@@ -107,6 +107,78 @@ public final class ModItems {
     public static final DeferredItem<ArmorItem> ULTIMATE_BOOTS = armor("ultimate_boots", SuperArmorMaterial.ULTIMATE, ArmorItem.Type.BOOTS);
 
     // ================================================================
+    // Bows — 5 tiers
+    // ================================================================
+
+    public static final DeferredItem<SuperBowItem> SUPER_IRON_BOW = ITEMS.registerItem("super_iron_bow",
+            props -> new SuperBowItem(SuperTier.IRON_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true), 1.3f));
+
+    public static final DeferredItem<SuperBowItem> SUPER_GOLD_BOW = ITEMS.registerItem("super_gold_bow",
+            props -> new SuperBowItem(SuperTier.GOLD_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true), 1.4f));
+
+    public static final DeferredItem<SuperBowItem> SUPER_DIAMOND_BOW = ITEMS.registerItem("super_diamond_bow",
+            props -> new SuperBowItem(SuperTier.DIAMOND_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true), 1.5f));
+
+    public static final DeferredItem<SuperBowItem> SUPER_NETHERITE_BOW = ITEMS.registerItem("super_netherite_bow",
+            props -> new SuperBowItem(SuperTier.NETHERITE_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true), 1.7f));
+
+    public static final DeferredItem<SuperBowItem> ULTIMATE_BOW = ITEMS.registerItem("ultimate_bow",
+            props -> new SuperBowItem(SuperTier.ULTIMATE, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true), 3.0f));
+
+    // ================================================================
+    // Shields — 5 tiers
+    // ================================================================
+
+    public static final DeferredItem<SuperShieldItem> SUPER_IRON_SHIELD = ITEMS.registerItem("super_iron_shield",
+            props -> new SuperShieldItem(SuperTier.IRON_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    public static final DeferredItem<SuperShieldItem> SUPER_GOLD_SHIELD = ITEMS.registerItem("super_gold_shield",
+            props -> new SuperShieldItem(SuperTier.GOLD_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    public static final DeferredItem<SuperShieldItem> SUPER_DIAMOND_SHIELD = ITEMS.registerItem("super_diamond_shield",
+            props -> new SuperShieldItem(SuperTier.DIAMOND_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    public static final DeferredItem<SuperShieldItem> SUPER_NETHERITE_SHIELD = ITEMS.registerItem("super_netherite_shield",
+            props -> new SuperShieldItem(SuperTier.NETHERITE_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    public static final DeferredItem<SuperShieldItem> ULTIMATE_SHIELD = ITEMS.registerItem("ultimate_shield",
+            props -> new SuperShieldItem(SuperTier.ULTIMATE, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    // ================================================================
+    // Fishing Rods — 5 tiers
+    // ================================================================
+
+    public static final DeferredItem<SuperFishingRodItem> SUPER_IRON_FISHING_ROD = ITEMS.registerItem("super_iron_fishing_rod",
+            props -> new SuperFishingRodItem(SuperTier.IRON_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    public static final DeferredItem<SuperFishingRodItem> SUPER_GOLD_FISHING_ROD = ITEMS.registerItem("super_gold_fishing_rod",
+            props -> new SuperFishingRodItem(SuperTier.GOLD_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    public static final DeferredItem<SuperFishingRodItem> SUPER_DIAMOND_FISHING_ROD = ITEMS.registerItem("super_diamond_fishing_rod",
+            props -> new SuperFishingRodItem(SuperTier.DIAMOND_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    public static final DeferredItem<SuperFishingRodItem> SUPER_NETHERITE_FISHING_ROD = ITEMS.registerItem("super_netherite_fishing_rod",
+            props -> new SuperFishingRodItem(SuperTier.NETHERITE_PLUS, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    public static final DeferredItem<SuperFishingRodItem> ULTIMATE_FISHING_ROD = ITEMS.registerItem("ultimate_fishing_rod",
+            props -> new SuperFishingRodItem(SuperTier.ULTIMATE, props.fireResistant()
+                    .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
+    // ================================================================
     // Foods — 5 items
     // ================================================================
 
