@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#super_crafting:iron_plus_armor",
+    "#super_crafting:gold_plus_armor",
+    "#super_crafting:diamond_plus_armor",
+    "#super_crafting:netherite_plus_armor",
+    "#super_crafting:ultimate_armor"
+  ]
+}

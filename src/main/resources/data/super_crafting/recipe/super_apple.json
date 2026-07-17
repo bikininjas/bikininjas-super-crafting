@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EAE"
+  ],
+  "key": {
+    "A": { "item": "minecraft:apple" },
+    "B": { "item": "minecraft:golden_apple" },
+    "C": { "item": "minecraft:ghast_tear" },
+    "D": { "item": "minecraft:nether_star" },
+    "E": { "item": "minecraft:gold_block" }
+  },
+  "result": {
+    "id": "super_crafting:super_apple",
+    "count": 1
+  }
+}

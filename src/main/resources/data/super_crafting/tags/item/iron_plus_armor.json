@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "super_crafting:super_iron_helmet",
+    "super_crafting:super_iron_chestplate",
+    "super_crafting:super_iron_leggings",
+    "super_crafting:super_iron_boots"
+  ]
+}

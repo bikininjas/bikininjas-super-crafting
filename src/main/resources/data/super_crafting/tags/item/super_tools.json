@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#super_crafting:iron_plus_tools",
+    "#super_crafting:gold_plus_tools",
+    "#super_crafting:diamond_plus_tools",
+    "#super_crafting:netherite_plus_tools",
+    "#super_crafting:ultimate_tools"
+  ]
+}

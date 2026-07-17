@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "super_crafting:super_netherite_sword",
+    "super_crafting:super_netherite_pickaxe",
+    "super_crafting:super_netherite_axe",
+    "super_crafting:super_netherite_shovel",
+    "super_crafting:super_netherite_hoe"
+  ]
+}

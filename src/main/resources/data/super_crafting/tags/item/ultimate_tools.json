@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "super_crafting:ultimate_sword",
+    "super_crafting:ultimate_pickaxe",
+    "super_crafting:ultimate_axe",
+    "super_crafting:ultimate_shovel",
+    "super_crafting:ultimate_hoe"
+  ]
+}

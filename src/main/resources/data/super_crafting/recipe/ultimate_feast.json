@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ABA",
+    "CDC",
+    " E "
+  ],
+  "key": {
+    "A": { "item": "super_crafting:super_apple" },
+    "B": { "item": "super_crafting:super_carrot" },
+    "C": { "item": "super_crafting:super_melon" },
+    "D": { "item": "super_crafting:super_chorus" },
+    "E": { "item": "minecraft:netherite_block" }
+  },
+  "result": {
+    "id": "super_crafting:ultimate_feast",
+    "count": 1
+  }
+}

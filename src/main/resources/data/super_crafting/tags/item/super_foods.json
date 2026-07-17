@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "super_crafting:super_apple",
+    "super_crafting:super_carrot",
+    "super_crafting:super_melon",
+    "super_crafting:super_chorus",
+    "super_crafting:ultimate_feast"
+  ]
+}

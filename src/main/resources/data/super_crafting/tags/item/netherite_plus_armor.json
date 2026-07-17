@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "super_crafting:super_netherite_helmet",
+    "super_crafting:super_netherite_chestplate",
+    "super_crafting:super_netherite_leggings",
+    "super_crafting:super_netherite_boots"
+  ]
+}

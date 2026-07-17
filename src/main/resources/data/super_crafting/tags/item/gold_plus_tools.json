@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "super_crafting:super_gold_sword",
+    "super_crafting:super_gold_pickaxe",
+    "super_crafting:super_gold_axe",
+    "super_crafting:super_gold_shovel",
+    "super_crafting:super_gold_hoe"
+  ]
+}
