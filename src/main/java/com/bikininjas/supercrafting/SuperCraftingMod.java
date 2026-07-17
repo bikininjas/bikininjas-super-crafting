@@ -1,6 +1,7 @@
 package com.bikininjas.supercrafting;
 
 import com.bikininjas.corelib.color.ColorAPI;
+import com.bikininjas.corelib.config.BikiniConfigRegistry;
 import com.bikininjas.corelib.log.LogManager;
 import com.bikininjas.corelib.log.ModLogger;
 import com.bikininjas.corelib.network.NetworkHandler;
@@ -31,6 +32,9 @@ public final class SuperCraftingMod {
         NetworkHandler.register(modBus);
         EnchantHandler.init();
         SuperFunnyIntegration.init();
+
+        BikiniConfigRegistry.registerBool("super_crafting", "ultimate_effects", "Ultimate Effects", true);
+        BikiniConfigRegistry.registerBool("super_crafting", "auto_enchant", "Auto-Enchant on Craft", true);
 
         ColorAPI.tintItems(modBus, 0xFFB0B0B0,
                 ModItems.SUPER_IRON_SWORD, ModItems.SUPER_IRON_PICKAXE,
