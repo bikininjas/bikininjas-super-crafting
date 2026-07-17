@@ -16,29 +16,29 @@ import org.jetbrains.annotations.NotNull;
 public enum SuperTier implements Tier {
 
     /**
-     * Tier 1 — Workhorse: balanced durability (500), attack 5.0, speed 7.5.
+     * Tier 1 — Workhorse: 800 uses, attack 7.0, speed 8.0 (3.5 hearts/hit).
      */
-    IRON_PLUS(500, 5.0f, 7.5f, 14, Tiers.IRON, "iron_plus", () -> Ingredient.of(Items.IRON_INGOT)),
+    IRON_PLUS(800, 7.0f, 8.0f, 14, Tiers.IRON, "iron_plus", () -> Ingredient.of(Items.IRON_INGOT)),
 
     /**
-     * Tier 2 — Swift Striker: low durability (500), attack 4.0, speed 12.0, best enchant 25.
+     * Tier 2 — Swift Striker: 600 uses, attack 6.0, speed 14.0, best enchant 25.
      */
-    GOLD_PLUS(500, 4.0f, 12.0f, 25, Tiers.GOLD, "gold_plus", () -> Ingredient.of(Items.GOLD_INGOT)),
+    GOLD_PLUS(600, 6.0f, 14.0f, 25, Tiers.GOLD, "gold_plus", () -> Ingredient.of(Items.GOLD_INGOT)),
 
     /**
-     * Tier 3 — Heavy Hitter: vanilla diamond durability (1561), attack 7.5, speed 9.0.
+     * Tier 3 — Heavy Hitter: 1800 uses, attack 11.0, speed 10.0 (5.5 hearts/hit).
      */
-    DIAMOND_PLUS(1561, 7.5f, 9.0f, 16, Tiers.DIAMOND, "diamond_plus", () -> Ingredient.of(Items.DIAMOND)),
+    DIAMOND_PLUS(1800, 11.0f, 10.0f, 16, Tiers.DIAMOND, "diamond_plus", () -> Ingredient.of(Items.DIAMOND)),
 
     /**
-     * Tier 4 — Endgame Standard: vanilla netherite durability (2031), attack 9.0, speed 10.5.
+     * Tier 4 — Endgame Standard: 2800 uses, attack 16.0, speed 12.0 (8 hearts/hit).
      */
-    NETHERITE_PLUS(2031, 9.0f, 10.5f, 18, Tiers.NETHERITE, "netherite_plus", () -> Ingredient.of(Items.NETHERITE_INGOT)),
+    NETHERITE_PLUS(2800, 16.0f, 12.0f, 18, Tiers.NETHERITE, "netherite_plus", () -> Ingredient.of(Items.NETHERITE_INGOT)),
 
     /**
-     * Tier 5 — Transcendent: highest durability (3500), attack 13.0, speed 14.0, max enchant 25.
+     * Tier 5 — Transcendent: 5000 uses, attack 35.0, speed 18.0 (17.5 hearts/hit — one-shots most mobs).
      */
-    ULTIMATE(3500, 13.0f, 14.0f, 25, Tiers.NETHERITE, "ultimate", () -> Ingredient.of(Blocks.NETHERITE_BLOCK));
+    ULTIMATE(5000, 35.0f, 18.0f, 25, Tiers.NETHERITE, "ultimate", () -> Ingredient.of(Blocks.NETHERITE_BLOCK));
 
     private final int uses;
     private final float speed;
