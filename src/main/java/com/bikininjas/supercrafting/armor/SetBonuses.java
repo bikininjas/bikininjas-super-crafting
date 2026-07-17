@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
@@ -122,6 +123,11 @@ public final class SetBonuses {
                     return; // only one tier applies at a time
                 }
             }
+        }
+
+        @SubscribeEvent
+        static void onPlayerLoggedOut(@NotNull PlayerEvent.PlayerLoggedOutEvent event) {
+            ultimateFlightTicks.remove(event.getEntity().getUUID());
         }
     }
 
