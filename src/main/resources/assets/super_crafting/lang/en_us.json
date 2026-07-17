@@ -1,0 +1,68 @@
+{
+  "itemGroup.super_crafting": "Super Crafting",
+
+  "item.super_crafting.super_iron_sword": "Super Iron Sword",
+  "item.super_crafting.super_gold_sword": "Super Gold Sword",
+  "item.super_crafting.super_diamond_sword": "Super Diamond Sword",
+  "item.super_crafting.super_netherite_sword": "Super Netherite Sword",
+  "item.super_crafting.ultimate_sword": "Ultimate Sword",
+
+  "item.super_crafting.super_iron_pickaxe": "Super Iron Pickaxe",
+  "item.super_crafting.super_gold_pickaxe": "Super Gold Pickaxe",
+  "item.super_crafting.super_diamond_pickaxe": "Super Diamond Pickaxe",
+  "item.super_crafting.super_netherite_pickaxe": "Super Netherite Pickaxe",
+  "item.super_crafting.ultimate_pickaxe": "Ultimate Pickaxe",
+
+  "item.super_crafting.super_iron_axe": "Super Iron Axe",
+  "item.super_crafting.super_gold_axe": "Super Gold Axe",
+  "item.super_crafting.super_diamond_axe": "Super Diamond Axe",
+  "item.super_crafting.super_netherite_axe": "Super Netherite Axe",
+  "item.super_crafting.ultimate_axe": "Ultimate Axe",
+
+  "item.super_crafting.super_iron_shovel": "Super Iron Shovel",
+  "item.super_crafting.super_gold_shovel": "Super Gold Shovel",
+  "item.super_crafting.super_diamond_shovel": "Super Diamond Shovel",
+  "item.super_crafting.super_netherite_shovel": "Super Netherite Shovel",
+  "item.super_crafting.ultimate_shovel": "Ultimate Shovel",
+
+  "item.super_crafting.super_iron_hoe": "Super Iron Hoe",
+  "item.super_crafting.super_gold_hoe": "Super Gold Hoe",
+  "item.super_crafting.super_diamond_hoe": "Super Diamond Hoe",
+  "item.super_crafting.super_netherite_hoe": "Super Netherite Hoe",
+  "item.super_crafting.ultimate_hoe": "Ultimate Hoe",
+
+  "item.super_crafting.super_iron_helmet": "Super Iron Helmet",
+  "item.super_crafting.super_gold_helmet": "Super Gold Helmet",
+  "item.super_crafting.super_diamond_helmet": "Super Diamond Helmet",
+  "item.super_crafting.super_netherite_helmet": "Super Netherite Helmet",
+  "item.super_crafting.ultimate_helmet": "Ultimate Helmet",
+
+  "item.super_crafting.super_iron_chestplate": "Super Iron Chestplate",
+  "item.super_crafting.super_gold_chestplate": "Super Gold Chestplate",
+  "item.super_crafting.super_diamond_chestplate": "Super Diamond Chestplate",
+  "item.super_crafting.super_netherite_chestplate": "Super Netherite Chestplate",
+  "item.super_crafting.ultimate_chestplate": "Ultimate Chestplate",
+
+  "item.super_crafting.super_iron_leggings": "Super Iron Leggings",
+  "item.super_crafting.super_gold_leggings": "Super Gold Leggings",
+  "item.super_crafting.super_diamond_leggings": "Super Diamond Leggings",
+  "item.super_crafting.super_netherite_leggings": "Super Netherite Leggings",
+  "item.super_crafting.ultimate_leggings": "Ultimate Leggings",
+
+  "item.super_crafting.super_iron_boots": "Super Iron Boots",
+  "item.super_crafting.super_gold_boots": "Super Gold Boots",
+  "item.super_crafting.super_diamond_boots": "Super Diamond Boots",
+  "item.super_crafting.super_netherite_boots": "Super Netherite Boots",
+  "item.super_crafting.ultimate_boots": "Ultimate Boots",
+
+  "item.super_crafting.super_apple": "Super Apple",
+  "item.super_crafting.super_carrot": "Super Carrot",
+  "item.super_crafting.super_melon": "Super Melon",
+  "item.super_crafting.super_chorus": "Super Chorus Fruit",
+  "item.super_crafting.ultimate_feast": "Ultimate Feast",
+
+  "advancements.super_crafting.root.title": "Super Crafting",
+  "advancements.super_crafting.root.description": "Discover the power of super items",
+  "advancements.super_crafting.ultimate_tier.title": "ULTIMATE Power",
+  "advancements.super_crafting.ultimate_tier.description": "Craft an ULTIMATE tier item"
+}

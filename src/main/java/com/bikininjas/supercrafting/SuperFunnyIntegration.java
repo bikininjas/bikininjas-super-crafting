@@ -253,30 +253,95 @@ public final class SuperFunnyIntegration {
         @SubscribeEvent
         static void onItemTooltip(ItemTooltipEvent event) {
             ItemStack stack = event.getItemStack();
-            if (!isUltimateItem(stack)) {
+            if (stack.isEmpty()) return;
+            String path = BuiltInRegistries.ITEM.getKey(stack.getItem()).getPath();
+
+            if (!path.startsWith("super_") && !path.startsWith("ultimate_")) {
                 return;
             }
-            String path = BuiltInRegistries.ITEM.getKey(stack.getItem()).getPath();
             List<Component> tooltip = event.getToolTip();
 
-            if (path.contains("sword")) {
-                tooltip.add(Component.literal("⚡ 30% chance: lightning strike").withStyle(ChatFormatting.AQUA));
-            } else if (path.contains("pickaxe")) {
-                tooltip.add(Component.literal("💎 50% chance: bonus XP orbs").withStyle(ChatFormatting.AQUA));
-            } else if (path.contains("axe")) {
-                tooltip.add(Component.literal("🚀 Launches hit entity upward").withStyle(ChatFormatting.AQUA));
-            } else if (path.contains("shovel")) {
-                tooltip.add(Component.literal("🏔 Spawns silverfish on dig").withStyle(ChatFormatting.AQUA));
-            } else if (path.contains("hoe")) {
-                tooltip.add(Component.literal("🐔 Right-click mob → chicken").withStyle(ChatFormatting.AQUA));
-            } else if (path.contains("helmet")) {
-                tooltip.add(Component.literal("👁 Glowing on nearby mobs (10 blocks)").withStyle(ChatFormatting.AQUA));
-            } else if (path.contains("chestplate")) {
-                tooltip.add(Component.literal("🛡 25% chance: reflect 40% damage").withStyle(ChatFormatting.AQUA));
-            } else if (path.contains("leggings")) {
-                tooltip.add(Component.literal("🏃 Speed II while equipped").withStyle(ChatFormatting.AQUA));
-            } else if (path.contains("boots")) {
-                tooltip.add(Component.literal("🌈 Rainbow particle trail while sprinting").withStyle(ChatFormatting.AQUA));
+            ChatFormatting tierColor;
+            String tierName;
+            int[] armorDefense = null;
+
+            if (path.contains("ultimate_")) {
+                tierColor = ChatFormatting.LIGHT_PURPLE;
+                tierName = "ULTIMATE";
+                armorDefense = new int[]{6, 11, 9, 6};
+            } else if (path.contains("netherite")) {
+                tierColor = ChatFormatting.DARK_PURPLE;
+                tierName = "Netherite+";
+                armorDefense = new int[]{4, 9, 7, 4};
+            } else if (path.contains("diamond")) {
+                tierColor = ChatFormatting.AQUA;
+                tierName = "Diamond+";
+                armorDefense = new int[]{4, 8, 7, 3};
+            } else if (path.contains("gold")) {
+                tierColor = ChatFormatting.GOLD;
+                tierName = "Gold+";
+                armorDefense = new int[]{3, 6, 5, 2};
+            } else {
+                tierColor = ChatFormatting.GRAY;
+                tierName = "Iron+";
+                armorDefense = new int[]{3, 7, 6, 2};
+            }
+
+            tooltip.add(Component.literal("◆ " + tierName + " Tier").withStyle(tierColor));
+
+            if (armorDefense != null) {
+                int def = -1;
+                if (path.contains("helmet")) {
+                    def = armorDefense[0];
+                } else if (path.contains("chestplate")) {
+                    def = armorDefense[1];
+                } else if (path.contains("leggings")) {
+                    def = armorDefense[2];
+                } else if (path.contains("boots")) {
+                    def = armorDefense[3];
+                }
+                if (def >= 0) {
+                    tooltip.add(Component.literal("Defense: +" + def).withStyle(ChatFormatting.GRAY));
+                }
+            }
+
+            if (path.contains("super_apple")) {
+                tooltip.add(Component.literal("Restores 10 Hunger").withStyle(ChatFormatting.GREEN));
+                tooltip.add(Component.literal("Regeneration II, Resistance I, Absorption I").withStyle(ChatFormatting.GREEN));
+            } else if (path.contains("super_carrot")) {
+                tooltip.add(Component.literal("Restores 10 Hunger").withStyle(ChatFormatting.GREEN));
+                tooltip.add(Component.literal("Night Vision, Speed II").withStyle(ChatFormatting.GREEN));
+            } else if (path.contains("super_melon")) {
+                tooltip.add(Component.literal("Restores 12 Hunger").withStyle(ChatFormatting.GREEN));
+                tooltip.add(Component.literal("Absorption III, Resistance I").withStyle(ChatFormatting.GREEN));
+            } else if (path.contains("super_chorus")) {
+                tooltip.add(Component.literal("Restores 12 Hunger").withStyle(ChatFormatting.GREEN));
+                tooltip.add(Component.literal("Slow Falling III, Regeneration III").withStyle(ChatFormatting.GREEN));
+            } else if (path.contains("ultimate_feast")) {
+                tooltip.add(Component.literal("Restores 20 Hunger").withStyle(ChatFormatting.GREEN));
+                tooltip.add(Component.literal("Regeneration V, Strength II, Absorption V").withStyle(ChatFormatting.GREEN));
+            }
+
+            if (path.contains("ultimate_")) {
+                if (path.contains("sword")) {
+                    tooltip.add(Component.literal("⚡ 30% chance: lightning strike").withStyle(ChatFormatting.AQUA));
+                } else if (path.contains("pickaxe")) {
+                    tooltip.add(Component.literal("💎 50% chance: bonus XP orbs").withStyle(ChatFormatting.AQUA));
+                } else if (path.contains("axe")) {
+                    tooltip.add(Component.literal("🚀 Launches hit entity upward").withStyle(ChatFormatting.AQUA));
+                } else if (path.contains("shovel")) {
+                    tooltip.add(Component.literal("🏔 Spawns silverfish on dig").withStyle(ChatFormatting.AQUA));
+                } else if (path.contains("hoe")) {
+                    tooltip.add(Component.literal("🐔 Right-click mob → chicken").withStyle(ChatFormatting.AQUA));
+                } else if (path.contains("helmet")) {
+                    tooltip.add(Component.literal("👁 Glowing on nearby mobs (10 blocks)").withStyle(ChatFormatting.AQUA));
+                } else if (path.contains("chestplate")) {
+                    tooltip.add(Component.literal("🛡 25% chance: reflect 40% damage").withStyle(ChatFormatting.AQUA));
+                } else if (path.contains("leggings")) {
+                    tooltip.add(Component.literal("🏃 Speed II while equipped").withStyle(ChatFormatting.AQUA));
+                } else if (path.contains("boots")) {
+                    tooltip.add(Component.literal("🌈 Rainbow particle trail while sprinting").withStyle(ChatFormatting.AQUA));
+                }
             }
         }
     }

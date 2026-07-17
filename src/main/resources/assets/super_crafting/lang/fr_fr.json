@@ -1,0 +1,68 @@
+{
+  "itemGroup.super_crafting": "Super Crafting",
+
+  "item.super_crafting.super_iron_sword": "Épée Super Fer",
+  "item.super_crafting.super_gold_sword": "Épée Super Or",
+  "item.super_crafting.super_diamond_sword": "Épée Super Diamant",
+  "item.super_crafting.super_netherite_sword": "Épée Super Netherite",
+  "item.super_crafting.ultimate_sword": "Épée ULTIMATE",
+
+  "item.super_crafting.super_iron_pickaxe": "Pioche Super Fer",
+  "item.super_crafting.super_gold_pickaxe": "Pioche Super Or",
+  "item.super_crafting.super_diamond_pickaxe": "Pioche Super Diamant",
+  "item.super_crafting.super_netherite_pickaxe": "Pioche Super Netherite",
+  "item.super_crafting.ultimate_pickaxe": "Pioche ULTIMATE",
+
+  "item.super_crafting.super_iron_axe": "Hache Super Fer",
+  "item.super_crafting.super_gold_axe": "Hache Super Or",
+  "item.super_crafting.super_diamond_axe": "Hache Super Diamant",
+  "item.super_crafting.super_netherite_axe": "Hache Super Netherite",
+  "item.super_crafting.ultimate_axe": "Hache ULTIMATE",
+
+  "item.super_crafting.super_iron_shovel": "Pelle Super Fer",
+  "item.super_crafting.super_gold_shovel": "Pelle Super Or",
+  "item.super_crafting.super_diamond_shovel": "Pelle Super Diamant",
+  "item.super_crafting.super_netherite_shovel": "Pelle Super Netherite",
+  "item.super_crafting.ultimate_shovel": "Pelle ULTIMATE",
+
+  "item.super_crafting.super_iron_hoe": "Houe Super Fer",
+  "item.super_crafting.super_gold_hoe": "Houe Super Or",
+  "item.super_crafting.super_diamond_hoe": "Houe Super Diamant",
+  "item.super_crafting.super_netherite_hoe": "Houe Super Netherite",
+  "item.super_crafting.ultimate_hoe": "Houe ULTIMATE",
+
+  "item.super_crafting.super_iron_helmet": "Casque Super Fer",
+  "item.super_crafting.super_gold_helmet": "Casque Super Or",
+  "item.super_crafting.super_diamond_helmet": "Casque Super Diamant",
+  "item.super_crafting.super_netherite_helmet": "Casque Super Netherite",
+  "item.super_crafting.ultimate_helmet": "Casque ULTIMATE",
+
+  "item.super_crafting.super_iron_chestplate": "Plastron Super Fer",
+  "item.super_crafting.super_gold_chestplate": "Plastron Super Or",
+  "item.super_crafting.super_diamond_chestplate": "Plastron Super Diamant",
+  "item.super_crafting.super_netherite_chestplate": "Plastron Super Netherite",
+  "item.super_crafting.ultimate_chestplate": "Plastron ULTIMATE",
+
+  "item.super_crafting.super_iron_leggings": "Jambières Super Fer",
+  "item.super_crafting.super_gold_leggings": "Jambières Super Or",
+  "item.super_crafting.super_diamond_leggings": "Jambières Super Diamant",
+  "item.super_crafting.super_netherite_leggings": "Jambières Super Netherite",
+  "item.super_crafting.ultimate_leggings": "Jambières ULTIMATE",
+
+  "item.super_crafting.super_iron_boots": "Bottes Super Fer",
+  "item.super_crafting.super_gold_boots": "Bottes Super Or",
+  "item.super_crafting.super_diamond_boots": "Bottes Super Diamant",
+  "item.super_crafting.super_netherite_boots": "Bottes Super Netherite",
+  "item.super_crafting.ultimate_boots": "Bottes ULTIMATE",
+
+  "item.super_crafting.super_apple": "Super Pomme",
+  "item.super_crafting.super_carrot": "Super Carotte",
+  "item.super_crafting.super_melon": "Super Melon",
+  "item.super_crafting.super_chorus": "Super Chorus",
+  "item.super_crafting.ultimate_feast": "Festin ULTIMATE",
+
+  "advancements.super_crafting.root.title": "Super Crafting",
+  "advancements.super_crafting.root.description": "Découvrez la puissance des super objets",
+  "advancements.super_crafting.ultimate_tier.title": "Puissance ULTIMATE",
+  "advancements.super_crafting.ultimate_tier.description": "Fabriquez un objet de niveau ULTIMATE"
+}
