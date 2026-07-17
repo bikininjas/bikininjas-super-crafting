@@ -2,6 +2,7 @@ package com.bikininjas.supercrafting;
 
 import com.bikininjas.corelib.log.LogManager;
 import com.bikininjas.corelib.log.ModLogger;
+import com.bikininjas.corelib.message.MessageHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -295,7 +296,7 @@ public final class SuperFunnyIntegration {
                     armorDefense = new int[]{3, 7, 6, 2};
                 }
 
-                tooltip.add(Component.literal("◆ " + tierName).withStyle(tierColor));
+                tooltip.add(MessageHelper.colored("◆ " + tierName, tierColor));
 
                 if (isArmor) {
                     int def = -1;
@@ -304,60 +305,60 @@ public final class SuperFunnyIntegration {
                     else if (path.contains("leggings")) def = armorDefense[2];
                     else if (path.contains("boots")) def = armorDefense[3];
                     if (def >= 0) {
-                        tooltip.add(Component.literal("Defense: +" + def).withStyle(ChatFormatting.GRAY));
+                        tooltip.add(MessageHelper.colored("Defense: +" + def, ChatFormatting.GRAY));
                     }
                 }
 
             if (isArmor) {
-                    tooltip.add(Component.literal("Auto-enchant: Protection IV, Unbreaking III, Mending").withStyle(ChatFormatting.DARK_GRAY));
+                    tooltip.add(MessageHelper.colored("Auto-enchant: Protection IV, Unbreaking III, Mending", ChatFormatting.DARK_GRAY));
                 } else if (isTool) {
-                    tooltip.add(Component.literal("Auto-enchant: Efficiency V, Unbreaking III, Fortune III, Mending").withStyle(ChatFormatting.DARK_GRAY));
+                    tooltip.add(MessageHelper.colored("Auto-enchant: Efficiency V, Unbreaking III, Fortune III, Mending", ChatFormatting.DARK_GRAY));
                 }
             }
 
             if (path.contains("super_apple")) {
-                tooltip.add(Component.literal("◆ Special Food").withStyle(ChatFormatting.GOLD));
-                tooltip.add(Component.literal("Restores 10 Hunger").withStyle(ChatFormatting.GREEN));
-                tooltip.add(Component.literal("Regeneration II, Resistance I, Absorption I").withStyle(ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("◆ Special Food", ChatFormatting.GOLD));
+                tooltip.add(MessageHelper.colored("Restores 10 Hunger", ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("Regeneration II, Resistance I, Absorption I", ChatFormatting.GREEN));
             } else if (path.contains("super_carrot")) {
-                tooltip.add(Component.literal("◆ Special Food").withStyle(ChatFormatting.GOLD));
-                tooltip.add(Component.literal("Restores 10 Hunger").withStyle(ChatFormatting.GREEN));
-                tooltip.add(Component.literal("Night Vision 3min, Speed II").withStyle(ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("◆ Special Food", ChatFormatting.GOLD));
+                tooltip.add(MessageHelper.colored("Restores 10 Hunger", ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("Night Vision 3min, Speed II", ChatFormatting.GREEN));
             } else if (path.contains("super_melon")) {
-                tooltip.add(Component.literal("◆ Special Food").withStyle(ChatFormatting.GOLD));
-                tooltip.add(Component.literal("Restores 12 Hunger").withStyle(ChatFormatting.GREEN));
-                tooltip.add(Component.literal("Absorption III, Resistance I").withStyle(ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("◆ Special Food", ChatFormatting.GOLD));
+                tooltip.add(MessageHelper.colored("Restores 12 Hunger", ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("Absorption III, Resistance I", ChatFormatting.GREEN));
             } else if (path.contains("super_chorus")) {
-                tooltip.add(Component.literal("◆ Special Food").withStyle(ChatFormatting.GOLD));
-                tooltip.add(Component.literal("Restores 12 Hunger").withStyle(ChatFormatting.GREEN));
-                tooltip.add(Component.literal("Slow Falling III, Regeneration III").withStyle(ChatFormatting.GREEN));
-                tooltip.add(Component.literal("30% chance: Levitation I (fun!)").withStyle(ChatFormatting.LIGHT_PURPLE));
+                tooltip.add(MessageHelper.colored("◆ Special Food", ChatFormatting.GOLD));
+                tooltip.add(MessageHelper.colored("Restores 12 Hunger", ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("Slow Falling III, Regeneration III", ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("30% chance: Levitation I (fun!)", ChatFormatting.LIGHT_PURPLE));
             } else if (path.contains("ultimate_feast")) {
-                tooltip.add(Component.literal("◆ ULTIMATE Food").withStyle(ChatFormatting.LIGHT_PURPLE));
-                tooltip.add(Component.literal("Restores 20 Hunger").withStyle(ChatFormatting.GREEN));
-                tooltip.add(Component.literal("Regeneration V, Strength II, Absorption V").withStyle(ChatFormatting.GREEN));
-                tooltip.add(Component.literal("Resistance III, Fire Resistance").withStyle(ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("◆ ULTIMATE Food", ChatFormatting.LIGHT_PURPLE));
+                tooltip.add(MessageHelper.colored("Restores 20 Hunger", ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("Regeneration V, Strength II, Absorption V", ChatFormatting.GREEN));
+                tooltip.add(MessageHelper.colored("Resistance III, Fire Resistance", ChatFormatting.GREEN));
             }
 
             if (path.contains("ultimate_")) {
                 if (path.contains("sword")) {
-                    tooltip.add(Component.literal("⚡ 30% chance: lightning strike").withStyle(ChatFormatting.AQUA));
+                    tooltip.add(MessageHelper.colored("⚡ 30% chance: lightning strike", ChatFormatting.AQUA));
                 } else if (path.contains("pickaxe")) {
-                    tooltip.add(Component.literal("💎 50% chance: bonus XP orbs").withStyle(ChatFormatting.AQUA));
+                    tooltip.add(MessageHelper.colored("💎 50% chance: bonus XP orbs", ChatFormatting.AQUA));
                 } else if (path.contains("axe")) {
-                    tooltip.add(Component.literal("🚀 Launches hit entity upward").withStyle(ChatFormatting.AQUA));
+                    tooltip.add(MessageHelper.colored("🚀 Launches hit entity upward", ChatFormatting.AQUA));
                 } else if (path.contains("shovel")) {
-                    tooltip.add(Component.literal("🏔 Spawns silverfish on dig").withStyle(ChatFormatting.AQUA));
+                    tooltip.add(MessageHelper.colored("🏔 Spawns silverfish on dig", ChatFormatting.AQUA));
                 } else if (path.contains("hoe")) {
-                    tooltip.add(Component.literal("🐔 Right-click mob → chicken").withStyle(ChatFormatting.AQUA));
+                    tooltip.add(MessageHelper.colored("🐔 Right-click mob → chicken", ChatFormatting.AQUA));
                 } else if (path.contains("helmet")) {
-                    tooltip.add(Component.literal("👁 Glowing on nearby mobs (10 blocks)").withStyle(ChatFormatting.AQUA));
+                    tooltip.add(MessageHelper.colored("👁 Glowing on nearby mobs (10 blocks)", ChatFormatting.AQUA));
                 } else if (path.contains("chestplate")) {
-                    tooltip.add(Component.literal("🛡 25% chance: reflect 40% damage").withStyle(ChatFormatting.AQUA));
+                    tooltip.add(MessageHelper.colored("🛡 25% chance: reflect 40% damage", ChatFormatting.AQUA));
                 } else if (path.contains("leggings")) {
-                    tooltip.add(Component.literal("🏃 Speed II while equipped").withStyle(ChatFormatting.AQUA));
+                    tooltip.add(MessageHelper.colored("🏃 Speed II while equipped", ChatFormatting.AQUA));
                 } else if (path.contains("boots")) {
-                    tooltip.add(Component.literal("🌈 Rainbow particle trail while sprinting").withStyle(ChatFormatting.AQUA));
+                    tooltip.add(MessageHelper.colored("🌈 Rainbow particle trail while sprinting", ChatFormatting.AQUA));
                 }
             }
         }
