@@ -18,34 +18,90 @@
   },
   "parent": "super_crafting:root",
   "criteria": {
-    "has_ultimate": {
+    "sword": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": "super_crafting:ultimate_sword"
-          },
+          }
+        ]
+      }
+    },
+    "pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": "super_crafting:ultimate_pickaxe"
-          },
+          }
+        ]
+      }
+    },
+    "axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": "super_crafting:ultimate_axe"
-          },
+          }
+        ]
+      }
+    },
+    "shovel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": "super_crafting:ultimate_shovel"
-          },
+          }
+        ]
+      }
+    },
+    "hoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": "super_crafting:ultimate_hoe"
-          },
+          }
+        ]
+      }
+    },
+    "helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": "super_crafting:ultimate_helmet"
-          },
+          }
+        ]
+      }
+    },
+    "chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": "super_crafting:ultimate_chestplate"
-          },
+          }
+        ]
+      }
+    },
+    "leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": "super_crafting:ultimate_leggings"
-          },
+          }
+        ]
+      }
+    },
+    "boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": "super_crafting:ultimate_boots"
           }
@@ -55,7 +111,15 @@
   },
   "requirements": [
     [
-      "has_ultimate"
+      "sword",
+      "pickaxe",
+      "axe",
+      "shovel",
+      "hoe",
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots"
     ]
   ]
 }
