@@ -2,6 +2,7 @@ package com.bikininjas.supercrafting;
 
 import com.bikininjas.corelib.log.LogManager;
 import com.bikininjas.corelib.log.ModLogger;
+import com.bikininjas.corelib.entity.SpawnHelper;
 import com.bikininjas.corelib.message.MessageHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -125,7 +126,8 @@ public final class SuperFunnyIntegration {
             if (!isUltimateItem(tool) || !nameContains(tool, "shovel")) return;
             if (RANDOM.nextFloat() > 0.2f) return;
             if (event.getLevel() instanceof ServerLevel serverLevel) {
-                EntityType.SILVERFISH.spawn(serverLevel, event.getPos(), MobSpawnType.TRIGGERED);
+                SpawnHelper.spawnAt(serverLevel, EntityType.SILVERFISH,
+                        event.getPos().getX() + 0.5, event.getPos().getY(), event.getPos().getZ() + 0.5);
                 LOGGER.debug("ULTIMATE SHOVEL: Silverfish spawned at {}", event.getPos());
             }
         }
