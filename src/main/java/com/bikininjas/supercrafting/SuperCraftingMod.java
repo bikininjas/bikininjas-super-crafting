@@ -6,11 +6,7 @@ import com.bikininjas.corelib.log.ModLogger;
 import com.bikininjas.corelib.network.NetworkHandler;
 import com.bikininjas.corelib.recipe.RecipeAPI;
 import com.bikininjas.supercrafting.item.ModItems;
-import com.bikininjas.supercrafting.recipe.ExoticRecipeManager;
-import com.bikininjas.supercrafting.recipe.FusionRecipeManager;
 import com.bikininjas.supercrafting.SuperFunnyIntegration;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -78,27 +74,10 @@ public final class SuperCraftingMod {
 
         NeoForge.EVENT_BUS.addListener((ServerAboutToStartEvent event) -> {
             var server = event.getServer();
-            var recipeManager = server.getRecipeManager();
-
-            var fusionRecipes = FusionRecipeManager.createAll();
-            var fusionIds = FusionRecipeManager.getRecipeIds();
-            for (int i = 0; i < fusionRecipes.size(); i++) {
-                var id = fusionIds.get(i);
-                // Skip if a datapack recipe already exists (KubeJS may have removed it)
-                if (recipeManager.byKey(id).isPresent()) continue;
-                RecipeAPI.addRecipe(id.toString(), new RecipeHolder<>(id, fusionRecipes.get(i)));
-            }
-
-            var exoticRecipes = ExoticRecipeManager.createAll();
-            var exoticIds = ExoticRecipeManager.getRecipeIds();
-            for (int i = 0; i < exoticRecipes.size(); i++) {
-                var id = exoticIds.get(i);
-                if (recipeManager.byKey(id).isPresent()) continue;
-                RecipeAPI.addRecipe(id.toString(), new RecipeHolder<>(id, exoticRecipes.get(i)));
-            }
-
+            // Recipes are provided as datapack JSONs (data/super_crafting/recipe/).
+            // KubeJS can modify/remove them without Java re-adding duplicates.
             RecipeAPI.applyPending(server);
-            LOGGER.info("Super Crafting recipes registered");
+            LOGGER.info("Super Crafting recipes loaded from datapack");
         });
     }
 }
